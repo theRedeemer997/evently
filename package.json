@@ -1,0 +1,41 @@
+{
+  "name": "evently",
+  "version": "1.0.0",
+  "description": "Final Capstone Project of Computer Applications Development(0066), Level 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cm": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theRedeemer997/evently.git"
+  },
+  "keywords": [
+    "express",
+    "firebase",
+    "mongodb",
+    "ejs"
+  ],
+  "author": "Mmathew0691@conestogac.on.ca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theRedeemer997/evently/issues"
+  },
+  "homepage": "https://github.com/theRedeemer997/evently#readme",
+  "dependencies": {
+    "commitizen": "^4.3.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

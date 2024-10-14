@@ -1,6 +1,7 @@
 //route to perform the post registration part
 const user = require("../model/user");
 const organizer = require("../model/organizer");
+const constants = require("../constants");
 
 const registerUser = async (req, res) => {
   const {
@@ -41,7 +42,7 @@ const registerUser = async (req, res) => {
       await usr.save();
       res.redirect("/login");
     } else {
-      error = "The Email and the Confirm Email should be same";
+      error = constants.EMAIL_CONFIRM_EMAIL_ERR;
       res.render("register", {
         error,
         email,
@@ -57,7 +58,7 @@ const registerUser = async (req, res) => {
       await usr.save();
       res.redirect("/login");
     } else {
-      error = "Please fill out the organization name";
+      error = constants.ORGANIZATION_NAME_ERR;
       res.render("register", {
         error,
         email,

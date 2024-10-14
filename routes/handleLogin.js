@@ -1,6 +1,7 @@
 // route to handle the login functionality
 const users = require("../model/user");
 const organizer = require("../model/organizer");
+const constants = require("../constants");
 
 const handleLogin = async (req, res) => {
   const { email, password, typeOf } = req.body;
@@ -16,12 +17,14 @@ const handleLogin = async (req, res) => {
       });
       console.log("user exists", user);
       if (user) {
-        req.session.username = email;
-        req.session.password = password;
-        req.session.type = "user";
-        res.render("home", { loggedIn: "loggedIn" });
+        req.session.username = user.EmailAddress;
+        req.session.password = user.Password;
+        req.session.name = user.FirstName + " " + user.LastName;
+        req.session.type = constants.SESSION_USR;
+        console.log("🚀 ~ handleLogin ~ req.session:", req.session);
+        res.render("home", { loggedIn: constants.LOGGED_IN });
       } else {
-        err = "Incorrect email or password";
+        err = constants.LOGIN_ERR;
         res.render("login", { err });
       }
     } else {
@@ -34,9 +37,9 @@ const handleLogin = async (req, res) => {
         req.session.username = email;
         req.session.password = password;
         req.session.type = "organizer";
-        res.render("home", { loggedIn: "loggedIn" });
+        res.render("home", { loggedIn: constants.LOGGED_IN });
       } else {
-        err = "Incorrect email or password";
+        err = constants.LOGIN_ERR;
         res.render("login", { err });
       }
     }

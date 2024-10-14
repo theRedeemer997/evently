@@ -1,0 +1,52 @@
+  <%-include('partials/header',{tab:'Evently'})-%>
+  <body>
+    <form action="/login" method="post">
+        <section class="sign-up">
+            <div class="container">
+                <div class="d-block d-md-flex">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 py-5">
+                            <h1 class="display-3 fw-bold">Login</h1>
+                        </div>
+                        <div class="col-12">
+                            <form>
+                                <div class="mb-3 col-md-8">
+                                  <label for="email" class="form-label">Email address</label>
+                                  <% if (typeof email !== 'undefined') { %>
+                                    <input type="email" class="form-control" name="email"   value="<%= email %>" required>
+                                  <% } else { %>
+                                    <input type="email" class="form-control" name="email"   required>
+                                  <% } %>
+                                </div>
+                                <div class="mb-3 col-md-8">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" name="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input id="organizer" type="checkbox" class="form-check-input"  name="typeOf" >
+                                    <label class="form-check-label" for="exampleCheck1">I am a organizer</label>
+                                </div>
+                                <% if (typeof err !== 'undefined') { %>
+                                    <div class="col-md-8">
+                                        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                                    </div>
+                                    <div class="col-md-8 d-flex justify-content-center">
+                                        <span class="error mb-5"> <%= err %></span>
+                                    </div>
+                                <% } else { %> 
+                                    <div class="col-md-8">
+                                        <button type="submit" class="btn btn-primary w-100 mb-5">Login</button>
+                                    </div>
+                                <% } %>                                   
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-none d-md-block">
+                        <img src="/images/event4.jpg" class="img-fluid rounded mx-auto" alt="...">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+  </body>
+</html>

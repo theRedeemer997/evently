@@ -1,6 +1,6 @@
 // route to get the home page
 const getHomePage = (req, res) => {
-  res.render("home");
+    res.render('home');
 };
 
 module.exports = getHomePage;

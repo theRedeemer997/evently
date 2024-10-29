@@ -4,14 +4,14 @@
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
-- [Key Features](#key-features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contribution Guidelines](#contribution-guidelines)
-- [Contributors](#contributors)
-- [License](#license)
+-   [About the Project](#about-the-project)
+-   [Key Features](#key-features)
+-   [Technologies Used](#technologies-used)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contribution Guidelines](#contribution-guidelines)
+-   [Contributors](#contributors)
+-   [License](#license)
 
 ## About the Project
 
@@ -19,22 +19,22 @@ Evently is designed to simplify the process of organizing events, making it easi
 
 ## Key Features
 
-- Event creation and management.
-- User authentication and roles (admin, event organizer, attendee).
-- Email remainder is sent to user once the event is booked.
-- Dashboard for tracking event metrics and attendees.
-- Real-time notifications.
-- Responsive design for mobile and web.
+-   Event creation and management.
+-   User authentication and roles (admin, event organizer, attendee).
+-   Email remainder is sent to user once the event is booked.
+-   Dashboard for tracking event metrics and attendees.
+-   Real-time notifications.
+-   Responsive design for mobile and web.
 
 ## Technologies Used
 
 This project utilizes the following technologies:
 
-- **Front-end**: HTML5, CSS3, Bootstrap 5
-- **Back-end**: Node.js, Express.js, Firebase
-- **Database**: MongoDB
-- **Version Control**: Git, GitHub
-- **Deployment**: Vercel, GitHub Actions
+-   **Front-end**: HTML5, CSS3, Bootstrap 5
+-   **Back-end**: Node.js, Express.js, Firebase
+-   **Database**: MongoDB
+-   **Version Control**: Git, GitHub
+-   **Deployment**: Vercel, GitHub Actions
 
 ## Installation
 
@@ -42,35 +42,35 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/theRedeemer997/evently.git
-   ```
+    ```bash
+    git clone https://github.com/theRedeemer997/evently.git
+    ```
 
 2. Navigate to the project directory:
 
-   ```bash
-   cd evently
-   ```
+    ```bash
+    cd evently
+    ```
 
 3. Install dependencies for both front-end and back-end:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 4. Set up the environment variables by creating a `.env` file in the root directory. Add your configurations as shown below:
 
-   ```bash
-   mongoUri =
-   PORT =
-   SECRET =
-   ```
+    ```bash
+    mongoUri =
+    PORT =
+    SECRET =
+    ```
 
 5. Start the development server:
 
-   ```bash
-   nodemon index.js
-   ```
+    ```bash
+    nodemon index.js
+    ```
 
 6. Access the application at `http://localhost:3000`.
 
@@ -78,11 +78,11 @@ To run this project locally, follow these steps:
 
 After installation, you can:
 
-- Register and log in as a user.
-- Register and log in as a organizer.
-- Create new events and manage existing ones.
-- Admin dashboard where the events are approved or deleted.
-- Receive real-time updates through email once the event is booked.
+-   Register and log in as a user.
+-   Register and log in as a organizer.
+-   Create new events and manage existing ones.
+-   Admin dashboard where the events are approved or deleted.
+-   Receive real-time updates through email once the event is booked.
 
 <!--For full documentation on the API and platform features, refer to the [Wiki](https://github.com/theRedeemer997/evently/wiki).-->
 

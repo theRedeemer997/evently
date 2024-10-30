@@ -32,11 +32,12 @@ const handleLogin = async (req, res) => {
                 EmailAddress: email,
                 Password: password,
             });
-            console.log('organizer exists', user);
+            console.log('🚀 ~ handleLogin ~ organizer exists:', user);
             if (user) {
                 req.session.username = email;
                 req.session.password = password;
-                req.session.type = 'organizer';
+                req.session.type = constants.SESSION_ORG;
+                console.log('🚀 ~ handleLogin ~ session:', req.session);
                 res.render('home', { loggedIn: constants.LOGGED_IN });
             } else {
                 err = constants.LOGIN_ERR;

@@ -1,7 +1,10 @@
   <%-include('partials/header',{tab:'Evently'})-%>
   <body>
-    <form action="/login" method="post">
-        <section class="sign-up">
+  <% if (typeof salutation !== 'undefined' && typeof  notification !==  'undefined') { %>
+      <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
+  <% } %>
+  <form action="/login" method="post">
+        <section class="login">
             <div class="container">
                 <div class="d-block d-md-flex">
                     <div class="col-md-6 col-sm-12">
@@ -47,6 +50,7 @@
                 </div>
             </div>
         </section>
-    </form>
+  </form>
+  <script  src="/custom/js/main.js"></script>
   </body>
 </html>

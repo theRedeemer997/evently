@@ -1,0 +1,53 @@
+<%-include('partials/header',{tab:'Evently'})-%>
+<body>
+<%-include('partials/loader')-%>
+<form action="/createEvent" method="post" onsubmit="showBootstrapLoader()" enctype="multipart/form-data">
+    <section class="create-event">
+        <div class="container">
+            <div class="d-block d-md-flex">
+                <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 py-5">
+                        <h1 class="display-3 fw-bold">Create Event</h1>
+                    </div>
+                    <div class="col-12">
+                        <form>
+                            <div class="mb-3 col-md-8">
+                                <label for="organizername" class="form-label">Organizer Name</label>
+                                <input type="text" class="form-control" name="organizername"   required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="slotsavailable" class="form-label">Available slots </label>
+                                <input type="number" name="slotsavailable" class="form-control" id="slotsavailable" required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="price" class="form-label">Price </label>
+                                <input type="number" name="slotsavailable" class="form-control" id="price" required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="description" class="form-label">Description </label>
+                                <input type="number" name="description" class="form-control" id="description" required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="eventaddress" class="form-label">Event Address</label>
+                                <input type="number" name="eventaddress" class="form-control" id="eventaddress" required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="formFile" class="form-label">Event Images</label>
+                                <input class="form-control" type="file" id="formFile" required>
+                            </div>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary w-100 mb-5">Create Event</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="/images/event4.jpg" class="img-fluid rounded mx-auto" alt="...">
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<script  src="/custom/js/main.js"></script>
+</body>
+</html>

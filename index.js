@@ -33,6 +33,7 @@ const postRegister = require('./routes/registerUser');
 const getLoginPage = require('./routes/getLoginPage');
 const handleLogin = require('./routes/handleLogin');
 const handleLogout = require('./routes/handleLogout');
+const getEventBookingPage = require('./routes/getEventBookingPage');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -56,6 +57,8 @@ evently.post('/register', postRegister);
 evently.get('/login', getLoginPage);
 //post call for login
 evently.post('/login', handleLogin);
+//get call to get the booking form
+evently.get('/createEvent', getEventBookingPage);
 //get call for logout
 evently.get('/logout', handleLogout);
 

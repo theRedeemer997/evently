@@ -5,13 +5,12 @@ const getEventBookingPage = (req, res) => {
     if (req.session.type === constants.SESSION_ORG) {
         res.render('createvent');
     } else {
-        let salutation = 'Hi ';
+        let salutation = constants.SALUTATION_ORG;
         let notification = constants.CREATE_EVNT_ERR;
         res.render('home', {
             salutation,
             notification,
         });
-        //res.redirect('/');
     }
 };
 

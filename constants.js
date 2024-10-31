@@ -7,7 +7,9 @@ const constants = {
     ORGANIZATION_NAME_ERR: 'Please fill out the organization name',
     RESISTRATION_SUCCESS:
         'You have successfully registered. Please login in with the same credentials',
+    EVENT_BOOKING_ALERT: 'Your event is pending to be approved by the admin.',
     CREATE_EVNT_ERR: 'Please login to create event',
+    SALUTATION_ORG: 'Hi Organizer !!',
 };
 
 module.exports = constants;

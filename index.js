@@ -34,9 +34,13 @@ const getLoginPage = require('./routes/getLoginPage');
 const handleLogin = require('./routes/handleLogin');
 const handleLogout = require('./routes/handleLogout');
 const getEventBookingPage = require('./routes/getEventBookingPage');
+const handleCreateEventAction = require('./routes/handleCreateEventAction');
 //connect the db
 const DB = require('./connectDB');
 DB();
+// Setting up multer as a middleware to grab photo uploads
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 
 //middleware
 evently.use(bodyParser.urlencoded({ extended: true }));
@@ -59,6 +63,12 @@ evently.get('/login', getLoginPage);
 evently.post('/login', handleLogin);
 //get call to get the booking form
 evently.get('/createEvent', getEventBookingPage);
+//post call to handle the event booking
+evently.post(
+    '/createEvent',
+    upload.single('eventImage'),
+    handleCreateEventAction
+);
 //get call for logout
 evently.get('/logout', handleLogout);
 

@@ -40,7 +40,12 @@ const registerUser = async (req, res) => {
     if (typeOf === undefined) {
         if (email === confirmEmail) {
             await usr.save();
-            res.redirect('/login');
+            let salutation = 'Hi ' + firstName;
+            let notification = constants.RESISTRATION_SUCCESS;
+            res.render('login', {
+                salutation,
+                notification,
+            });
         } else {
             error = constants.EMAIL_CONFIRM_EMAIL_ERR;
             res.render('register', {
@@ -56,7 +61,13 @@ const registerUser = async (req, res) => {
         console.log(organizationName === '');
         if (email === confirmEmail && organizationName !== '') {
             await usr.save();
-            res.redirect('/login');
+            //res.redirect('/login');
+            let salutation = 'Hi ' + firstName;
+            let notification = constants.RESISTRATION_SUCCESS;
+            res.render('login', {
+                salutation,
+                notification,
+            });
         } else {
             error = constants.ORGANIZATION_NAME_ERR;
             res.render('register', {

@@ -1,9 +1,14 @@
   <%-include('partials/header',{tab:'Evently - Discover & Book Events'})-%>
   <body>
+    <% if (typeof salutation !== 'undefined' && typeof  notification !==  'undefined') { %>
+      <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
+    <% } %>
     <%-include('partials/navbar')-%>
     <%-include('partials/hero-header')-%>
     <%-include('partials/trending')-%>
+    <%if(typeof isAdmin === undefined) {%>
     <%-include('partials/testimonials')-%>
+    <%}%>
     <%-include('partials/footer')-%>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/custom/js/animation.js"></script>

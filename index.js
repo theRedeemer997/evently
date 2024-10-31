@@ -33,9 +33,17 @@ const postRegister = require('./routes/registerUser');
 const getLoginPage = require('./routes/getLoginPage');
 const handleLogin = require('./routes/handleLogin');
 const handleLogout = require('./routes/handleLogout');
+const getEventBookingPage = require('./routes/getEventBookingPage');
+const handleCreateEventAction = require('./routes/handleCreateEventAction');
+const getManageEventPage = require('./routes/getManageEventPage');
+const handleEventsApproval = require('./routes/handleEventsApproval');
+const handleEventsRejection = require('./routes/handleEventsRejection');
 //connect the db
 const DB = require('./connectDB');
 DB();
+// Setting up multer as a middleware to grab photo uploads
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 
 //middleware
 evently.use(bodyParser.urlencoded({ extended: true }));
@@ -56,6 +64,20 @@ evently.post('/register', postRegister);
 evently.get('/login', getLoginPage);
 //post call for login
 evently.post('/login', handleLogin);
+//get call to get the booking form
+evently.get('/createEvent', getEventBookingPage);
+//post call to handle the event booking
+evently.post(
+    '/createEvent',
+    upload.single('eventImage'),
+    handleCreateEventAction
+);
+//get call to list the events in the admin panel
+evently.get('/manageEvent', getManageEventPage);
+// call to approve the event by admin
+evently.get('/approve/:eventId', handleEventsApproval);
+// call to reject the event by admin
+evently.get('/reject/:eventId', handleEventsRejection);
 //get call for logout
 evently.get('/logout', handleLogout);
 

@@ -1,9 +1,11 @@
-    <%-include('partials/header',{tab:'Evently'})-%>
+<%-include('partials/header',{tab:'Evently'})-%>
     <section class="trending-events py-5">
         <div class="container">
             <h2 class="text-center mb-5">Manage Events</h2>
-            <% if (typeof createdEvents !=='undefined' ) { for (let event of createdEvents) { %>
+            <%-include('partials/loader')-%>
+
             <div class="row">
+                <% if (typeof createdEvents !=='undefined' ) { for (let event of createdEvents) { %>
                 <div class="col-sm-8 col-md-6 col-lg-4 mb-4">
                     <div class="card event-card shadow-sm h-100">
                         <img
@@ -29,20 +31,21 @@
                             <p class="card-text">
                                 Location:&nbsp;<%=event.Address%>
                             </p>
-                            <a href="#" class="btn btn-outline-dark-purple btn-book"
+                            <a href="/approve/<%=event._id%>" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()"
                             >Approve</a
                             >&nbsp;&nbsp;
-                            <a href="#" class="btn btn-outline-dark-purple btn-book"
+                            <a href="/reject/<%=event._id%>" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()"
                             >Reject</a
                             >
                         </div>
                     </div>
                 </div>
+                <% } %>
+                <% } %>
             </div>
-            <% } %>
-            <% } %>
         </div>
     </section>
     <%-include('partials/footer')-%>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/custom/js/animation.js"></script>
+    <script  src="/custom/js/main.js"></script>

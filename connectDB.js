@@ -6,6 +6,10 @@ const user = require('./model/user');
 const organizer = require('./model/organizer');
 //get the createdEvents collection
 const createdEvents = require('./model/createdevents');
+//get the approvedEvents collection
+const approvedEvents = require('./model/approvedevents');
+//ge the rejected events collection
+const rejectedEvents = require('./model/rejectedevents');
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.mongoUri);

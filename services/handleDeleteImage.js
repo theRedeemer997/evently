@@ -9,17 +9,14 @@ const app = initializeApp(config);
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app);
 
-const handleDeleteImage = async (req, res) => {
+const handleDeleteImage = async (filename) => {
     //get the required fields from the body and the file
-    let filename = 'name of the file which needs to be deleted from firebase';
-
     const storageRef = ref(storage, 'images/' + filename);
     await deleteObject(storageRef);
     console.log(
         '🚀 ~ DeleteEventAction ~ action:',
-        'Image Deleted Successfully'
+        'Image Deleted Successfully from Firebase'
     );
-    res.render('home');
 };
 
-module.exports = handleCreateEventAction;
+module.exports = handleDeleteImage;

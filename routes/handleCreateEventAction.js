@@ -58,6 +58,7 @@ const handleCreateEventAction = async (req, res) => {
     res.render('home', {
         salutation,
         notification,
+        loggedIn: constants.LOGGED_IN,
     });
 };
 

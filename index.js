@@ -36,6 +36,8 @@ const handleLogout = require('./routes/handleLogout');
 const getEventBookingPage = require('./routes/getEventBookingPage');
 const handleCreateEventAction = require('./routes/handleCreateEventAction');
 const getManageEventPage = require('./routes/getManageEventPage');
+const handleEventsApproval = require('./routes/handleEventsApproval');
+const handleEventsRejection = require('./routes/handleEventsRejection');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -72,6 +74,10 @@ evently.post(
 );
 //get call to list the events in the admin panel
 evently.get('/manageEvent', getManageEventPage);
+// call to approve the event by admin
+evently.get('/approve/:eventId', handleEventsApproval);
+// call to reject the event by admin
+evently.get('/reject/:eventId', handleEventsRejection);
 //get call for logout
 evently.get('/logout', handleLogout);
 

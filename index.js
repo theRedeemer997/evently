@@ -35,6 +35,7 @@ const handleLogin = require('./routes/handleLogin');
 const handleLogout = require('./routes/handleLogout');
 const getEventBookingPage = require('./routes/getEventBookingPage');
 const handleCreateEventAction = require('./routes/handleCreateEventAction');
+const getManageEventPage = require('./routes/getManageEventPage');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -69,6 +70,8 @@ evently.post(
     upload.single('eventImage'),
     handleCreateEventAction
 );
+//get call to list the events in the admin panel
+evently.get('/manageEvent', getManageEventPage);
 //get call for logout
 evently.get('/logout', handleLogout);
 

@@ -10,6 +10,10 @@ const constants = {
     EVENT_BOOKING_ALERT: 'Your event is pending to be approved by the admin.',
     CREATE_EVNT_ERR: 'Please login to create event',
     SALUTATION_ORG: 'Hi Organizer !!',
+    ADMIN_EMAIL: 'admin@admin.ca',
+    ADMIN_PASSWORD: 'adminadmin',
+    ADMIN: 'admin',
+    MANAGE_EVNT_ERR: 'Please login with admin credentials to manage events',
 };
 
 module.exports = constants;

@@ -20,8 +20,14 @@ const storage = getStorage(app);
 
 const handleCreateEventAction = async (req, res) => {
     //get the required fields from the body and the file
-    const { organizername, slotsavailable, price, description, eventaddress } =
-        req.body;
+    const {
+        organizername,
+        slotsavailable,
+        price,
+        description,
+        eventaddress,
+        eventname,
+    } = req.body;
 
     const { originalname, mimetype, buffer } = req.file;
 
@@ -38,6 +44,7 @@ const handleCreateEventAction = async (req, res) => {
     console.log('🚀 ~ AddPostPage ~ downloadURL:', downloadURL);
     let eventCreated = new createdEvent({
         OrganizerName: organizername,
+        EventName: eventname,
         SlotsAvailable: slotsavailable,
         Price: price,
         Description: description,
@@ -46,7 +53,7 @@ const handleCreateEventAction = async (req, res) => {
         FileName: originalname,
     });
     await eventCreated.save();
-    let salutation = 'Hi ' + organizername;
+    let salutation = 'Hi ' + organizername + '!!';
     let notification = constants.EVENT_BOOKING_ALERT;
     res.render('home', {
         salutation,

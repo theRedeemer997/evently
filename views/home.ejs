@@ -6,7 +6,9 @@
     <%-include('partials/navbar')-%>
     <%-include('partials/hero-header')-%>
     <%-include('partials/trending')-%>
+    <%if(typeof isAdmin === undefined) {%>
     <%-include('partials/testimonials')-%>
+    <%}%>
     <%-include('partials/footer')-%>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/custom/js/animation.js"></script>

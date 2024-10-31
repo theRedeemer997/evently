@@ -11,21 +11,32 @@ const handleLogin = async (req, res) => {
     let err, loggedIn;
     try {
         if (typeOf === undefined) {
-            const user = await users.findOne({
-                EmailAddress: email,
-                Password: password,
-            });
-            console.log('user exists', user);
-            if (user) {
-                req.session.username = user.EmailAddress;
-                req.session.password = user.Password;
-                req.session.name = user.FirstName + ' ' + user.LastName;
-                req.session.type = constants.SESSION_USR;
-                console.log('🚀 ~ handleLogin ~ req.session:', req.session);
-                res.render('home', { loggedIn: constants.LOGGED_IN });
+            if (
+                email === constants.ADMIN_EMAIL &&
+                password === constants.ADMIN_PASSWORD
+            ) {
+                let loggedIn = constants.LOGGED_IN;
+                req.session.name = constants.ADMIN;
+                req.session.type = constants.ADMIN;
+                let isAdmin = constants.ADMIN;
+                res.render('home', { loggedIn, isAdmin });
             } else {
-                err = constants.LOGIN_ERR;
-                res.render('login', { err });
+                const user = await users.findOne({
+                    EmailAddress: email,
+                    Password: password,
+                });
+                console.log('user exists', user);
+                if (user) {
+                    req.session.username = user.EmailAddress;
+                    req.session.password = user.Password;
+                    req.session.name = user.FirstName + ' ' + user.LastName;
+                    req.session.type = constants.SESSION_USR;
+                    console.log('🚀 ~ handleLogin ~ req.session:', req.session);
+                    res.render('home', { loggedIn: constants.LOGGED_IN });
+                } else {
+                    err = constants.LOGIN_ERR;
+                    res.render('login', { err });
+                }
             }
         } else {
             const user = await organizer.findOne({

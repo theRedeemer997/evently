@@ -1,3 +1,4 @@
+const sendMail = require('../services/sendMail');
 const createdevents = require('../model/createdevents');
 const approvedevents = require('../model/approvedevents');
 const constants = require('../constants');
@@ -9,6 +10,7 @@ const handleEventsApproval = async (req, res) => {
         console.log('🚀 ~ handleEventsApproval ~ event found:', event);
         const approvedEvents = new approvedevents({
             OrganizerName: event.OrganizerName,
+            OrganizerEmail: event.OrganizerEmail,
             EventName: event.EventName,
             SlotsAvailable: event.SlotsAvailable,
             Price: event.Price,
@@ -19,6 +21,11 @@ const handleEventsApproval = async (req, res) => {
         });
         //save the event into approvedEvents collection
         await approvedEvents.save();
+        await sendMail(
+            event.OrganizerEmail,
+            constants.APP_SUB,
+            constants.APP_MSG
+        );
         //delete the same events from createdevents collection
         await createdevents.findByIdAndDelete(eventId);
         res.render('home', {

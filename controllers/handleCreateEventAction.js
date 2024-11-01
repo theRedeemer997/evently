@@ -22,6 +22,7 @@ const handleCreateEventAction = async (req, res) => {
     //get the required fields from the body and the file
     const {
         organizername,
+        organizeremail,
         slotsavailable,
         price,
         description,
@@ -44,6 +45,7 @@ const handleCreateEventAction = async (req, res) => {
     console.log('🚀 ~ AddPostPage ~ downloadURL:', downloadURL);
     let eventCreated = new createdEvent({
         OrganizerName: organizername,
+        OrganizerEmail: organizeremail,
         EventName: eventname,
         SlotsAvailable: slotsavailable,
         Price: price,

@@ -25,19 +25,19 @@ evently.use(
     })
 );
 /*
- * Get all the routes
+ * Get all the controllers
  */
-const getHomePage = require('./routes/getHomePage');
-const getSignUp = require('./routes/getSignUp');
-const postRegister = require('./routes/registerUser');
-const getLoginPage = require('./routes/getLoginPage');
-const handleLogin = require('./routes/handleLogin');
-const handleLogout = require('./routes/handleLogout');
-const getEventBookingPage = require('./routes/getEventBookingPage');
-const handleCreateEventAction = require('./routes/handleCreateEventAction');
-const getManageEventPage = require('./routes/getManageEventPage');
-const handleEventsApproval = require('./routes/handleEventsApproval');
-const handleEventsRejection = require('./routes/handleEventsRejection');
+const getHomePage = require('./controllers/getHomePage');
+const getSignUp = require('./controllers/getSignUp');
+const postRegister = require('./controllers/registerUser');
+const getLoginPage = require('./controllers/getLoginPage');
+const handleLogin = require('./controllers/handleLogin');
+const handleLogout = require('./controllers/handleLogout');
+const getEventBookingPage = require('./controllers/getEventBookingPage');
+const handleCreateEventAction = require('./controllers/handleCreateEventAction');
+const getManageEventPage = require('./controllers/getManageEventPage');
+const handleEventsApproval = require('./controllers/handleEventsApproval');
+const handleEventsRejection = require('./controllers/handleEventsRejection');
 //connect the db
 const DB = require('./connectDB');
 DB();

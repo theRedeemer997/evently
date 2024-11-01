@@ -18,11 +18,11 @@ const handleEventsRejection = async (req, res) => {
             ImageUrl: event.ImageUrl,
             FileName: event.FileName,
         });
-        //save the event into approvedEvents collection
+        //save the event into approved events collection
         await rejectedEvents.save();
         //delete the image from firebase
         handleDeleteImage(event.FileName);
-        //delete the same events from createdevents collection
+        //delete the same events from created events collection
         await createdevents.findByIdAndDelete(eventId);
         res.render('home', {
             loggedIn: constants.LOGGED_IN,

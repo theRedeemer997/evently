@@ -38,6 +38,7 @@ const handleCreateEventAction = require('./controllers/handleCreateEventAction')
 const getManageEventPage = require('./controllers/getManageEventPage');
 const handleEventsApproval = require('./controllers/handleEventsApproval');
 const handleEventsRejection = require('./controllers/handleEventsRejection');
+const handleEventsPage = require('./controllers/getEvents');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -72,6 +73,8 @@ evently.post(
     upload.single('eventImage'),
     handleCreateEventAction
 );
+//get call to get the listed and appoved events
+evently.get('/events', handleEventsPage);
 //get call to list the events in the admin panel
 evently.get('/manageEvent', getManageEventPage);
 // call to approve the event by admin

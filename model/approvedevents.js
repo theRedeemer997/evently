@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 //Define the schema for user
 const approvedEventsSchema = new Schema({
     OrganizerName: String,
+    OrganizerEmail: String,
     EventName: String,
     SlotsAvailable: String,
     Price: String,

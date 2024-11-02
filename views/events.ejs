@@ -1,0 +1,48 @@
+<%-include('partials/header',{tab:'Evently'})-%>
+    <section class="trending-events py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Events</h2>
+            <%-include('partials/loader')-%>
+
+            <div class="row">
+                <% if (typeof approvedEvents !=='undefined' ) { for (let event of approvedEvents) { %>
+                <div class="col-sm-8 col-md-6 col-lg-4 mb-4">
+                    <div class="card event-card shadow-sm h-100">
+                        <img
+                                src="<%=event.ImageUrl%>"
+                                class="card-img-top event-img"
+                                alt="Event 1"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title mb-0"><%=event.EventName%></h5>
+                            <div class="mb-3"><span class="badge rounded-pill bg-success"><%=event.OrganizerName%></span></div>
+                            <p class="card-text">
+                                <%=event.Description%>
+                            </p>
+                            <p class="card-text">
+                                Organizer:&nbsp;<%=event.OrganizerName%>
+                            </p>
+                            <p class="card-text">
+                                Available Slots:&nbsp;<%=event.SlotsAvailable%> slots
+                            </p>
+                            <p class="card-text">
+                                Price:&nbsp;$<%=event.Price%>
+                            </p>
+                            <p class="card-text">
+                                Location:&nbsp;<%=event.Address%>
+                            </p>
+                            <a href="#" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()"
+                            >Book</a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+    </section>
+    <%-include('partials/footer')-%>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/custom/js/animation.js"></script>
+    <script  src="/custom/js/main.js"></script>

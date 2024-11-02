@@ -1,3 +1,4 @@
+const sendMail = require('../services/sendMail');
 const createdevents = require('../model/createdevents');
 const rejectedEvent = require('../model/rejectedevents');
 const handleDeleteImage = require('../services/handleDeleteImage');
@@ -22,6 +23,11 @@ const handleEventsRejection = async (req, res) => {
         await rejectedEvents.save();
         //delete the image from firebase
         handleDeleteImage(event.FileName);
+        await sendMail(
+            event.OrganizerEmail,
+            constants.REJ_SUB,
+            constants.REJ_MSG
+        );
         //delete the same events from created events collection
         await createdevents.findByIdAndDelete(eventId);
         res.render('home', {

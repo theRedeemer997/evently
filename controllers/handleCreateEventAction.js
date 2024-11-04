@@ -32,7 +32,10 @@ const handleCreateEventAction = async (req, res) => {
 
     const { originalname, mimetype, buffer } = req.file;
 
-    const storageRef = ref(storage, 'images/' + originalname);
+    const storageRef = ref(
+        storage,
+        'images/' + originalname + organizername + eventname
+    );
     const metadata = {
         contentType: mimetype,
     };

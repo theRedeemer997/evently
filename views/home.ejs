@@ -1,6 +1,6 @@
   <%-include('partials/header',{tab:'Evently - Discover & Book Events'})-%>
   <body>
-    <% if (typeof salutation !== 'undefined' && typeof  notification !==  'undefined') { %>
+    <% if (typeof salutation !== 'undefined' && salutation.length>0  && typeof  notification !==  'undefined' && notification.length > 0) { %>
       <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
     <% } %>
     <%-include('partials/navbar')-%>

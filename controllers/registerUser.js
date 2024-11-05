@@ -42,10 +42,13 @@ const registerUser = async (req, res) => {
             await usr.save();
             let salutation = 'Hi ' + firstName;
             let notification = constants.RESISTRATION_SUCCESS;
-            res.render('login', {
-                salutation,
-                notification,
-            });
+            req.flash('salutation', salutation);
+            req.flash('notification', notification);
+            // res.render('login', {
+            //     salutation,
+            //     notification,
+            // });
+            res.redirect('/login');
         } else {
             error = constants.EMAIL_CONFIRM_EMAIL_ERR;
             res.render('register', {
@@ -64,10 +67,13 @@ const registerUser = async (req, res) => {
             //res.redirect('/login');
             let salutation = 'Hi ' + firstName;
             let notification = constants.RESISTRATION_SUCCESS;
-            res.render('login', {
-                salutation,
-                notification,
-            });
+            req.flash('salutation', salutation);
+            req.flash('notification', notification);
+            // res.render('login', {
+            //     salutation,
+            //     notification,
+            // });
+            res.redirect('/login');
         } else {
             error = constants.ORGANIZATION_NAME_ERR;
             res.render('register', {

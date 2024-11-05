@@ -9,9 +9,12 @@ const app = initializeApp(config);
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app);
 
-const handleDeleteImage = async (filename) => {
+const handleDeleteImage = async (filename, organizername, eventname) => {
     //get the required fields from the body and the file
-    const storageRef = ref(storage, 'images/' + filename);
+    const storageRef = ref(
+        storage,
+        'images/' + filename + organizername + eventname
+    );
     await deleteObject(storageRef);
     console.log(
         '🚀 ~ DeleteEventAction ~ action:',

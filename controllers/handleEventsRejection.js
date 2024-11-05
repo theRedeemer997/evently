@@ -22,7 +22,7 @@ const handleEventsRejection = async (req, res) => {
         //save the event into approved events collection
         await rejectedEvents.save();
         //delete the image from firebase
-        handleDeleteImage(event.FileName);
+        handleDeleteImage(event.FileName, event.OrganizerName, event.EventName);
         await sendMail(
             event.OrganizerEmail,
             constants.REJ_SUB,

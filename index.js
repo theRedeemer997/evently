@@ -4,9 +4,12 @@ require('dotenv').config();
 const express = require('express');
 //imports the body-parser middleware which
 const bodyParser = require('body-parser');
-// import the express-session library
+// import the express-session dependency
 const session = require('express-session');
+// import the connect-mongo dependency
 const MongoStore = require('connect-mongo');
+//import the connect-flash dependency
+const flash = require('connect-flash');
 //imports the Node.js path
 const path = require('path');
 //initialize the express app
@@ -24,6 +27,14 @@ evently.use(
         }),
     })
 );
+//use connect-flash
+evently.use(flash());
+// make sure that salutation and notification are accessible to all the ejs pages
+evently.use((req, res, next) => {
+    res.locals.salutation = req.flash('salutation') || '';
+    res.locals.notification = req.flash('notification') || '';
+    next();
+});
 /*
  * Get all the controllers
  */

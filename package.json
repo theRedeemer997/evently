@@ -28,6 +28,7 @@
     "homepage": "https://github.com/theRedeemer997/evently#readme",
     "dependencies": {
         "commitizen": "^4.3.1",
+        "connect-flash": "^0.1.1",
         "connect-mongo": "^5.1.0",
         "cz-gitmoji": "^0.0.7",
         "dotenv": "^16.4.5",

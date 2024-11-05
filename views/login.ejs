@@ -1,7 +1,7 @@
   <%-include('partials/header',{tab:'Evently'})-%>
   <body>
-  <% if (typeof salutation !== 'undefined' && typeof  notification !==  'undefined') { %>
-      <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
+  <% if (typeof salutation !== 'undefined' && salutation.length > 0 && typeof  notification !==  'undefined' && notification.length > 0) { %>
+      <%-include('partials/notification') %>
   <% } %>
   <%-include('partials/loader')-%>
   <form action="/login" method="post" onsubmit="showBootstrapLoader()">

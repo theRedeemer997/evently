@@ -30,6 +30,7 @@
         "commitizen": "^4.3.1",
         "connect-flash": "^0.1.1",
         "connect-mongo": "^5.1.0",
+        "cookie-parser": "^1.4.7",
         "cz-gitmoji": "^0.0.7",
         "dotenv": "^16.4.5",
         "ejs": "^3.1.10",

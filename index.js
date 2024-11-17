@@ -4,6 +4,8 @@ require('dotenv').config();
 const express = require('express');
 //imports the body-parser middleware which
 const bodyParser = require('body-parser');
+//importa the cookie-parser that parses the cookie
+const cookieParser = require('cookie-parser');
 // import the express-session dependency
 const session = require('express-session');
 // import the connect-mongo dependency
@@ -14,8 +16,12 @@ const flash = require('connect-flash');
 const path = require('path');
 //initialize the express app
 const evently = express();
+
+//use cookie-parser
+evently.use(cookieParser());
 // get the port from the environment variables
 const port = process.env.PORT || 3000;
+
 evently.use(
     session({
         secret: process.env.SECRET,
@@ -27,14 +33,19 @@ evently.use(
         }),
     })
 );
+
 //use connect-flash
 evently.use(flash());
 // make sure that salutation and notification are accessible to all the ejs pages
 evently.use((req, res, next) => {
     res.locals.salutation = req.flash('salutation') || '';
     res.locals.notification = req.flash('notification') || '';
+    res.locals.loggedIn = req.flash('loggedIn') || '';
+    res.locals.isAdmin = req.flash('isAdmin') || '';
+    res.locals.lastVisitMessage = req.flash('lastVisitMessage') || '';
     next();
 });
+
 /*
  * Get all the controllers
  */

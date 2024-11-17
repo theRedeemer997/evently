@@ -30,10 +30,13 @@ const handleEventsRejection = async (req, res) => {
         );
         //delete the same events from created events collection
         await createdevents.findByIdAndDelete(eventId);
-        res.render('home', {
-            loggedIn: constants.LOGGED_IN,
-            isAdmin: constants.ADMIN,
-        });
+        req.flash('loggedIn', constants.LOGGED_IN);
+        req.flash('isAdmin', constants.ADMIN);
+        res.redirect('/');
+        // res.render('home', {
+        //     loggedIn: constants.LOGGED_IN,
+        //     isAdmin: constants.ADMIN,
+        // });
     } catch (error) {
         console.log('🚀 ~ handleEventsApproval ~ error:', error.message);
     }

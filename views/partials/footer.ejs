@@ -1,50 +1,58 @@
 <footer class="bg-dark-purple text-white py-4">
-  <div class="container">
-    <hr class="border-light mb-4" />
-    <div class="row text-center">
-      <div class="col-md-6 mb-3 mb-md-0">
-        <p>&copy; 2024 Evently. All Rights Reserved.</p>
-      </div>
-      <div class="col-md-6">
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fas fa-lock"></i> Privacy Policy
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fas fa-file-contract"></i> Terms of Service
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fas fa-envelope"></i> Contact Us
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="container">
+        <hr class="border-light mb-4" />
+        <div class="row text-center">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p>&copy; 2024 Evently. All Rights Reserved.</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fas fa-lock"></i> Privacy Policy
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fas fa-file-contract"></i> Terms of
+                            Service
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="text-white">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <% if(typeof lastVisitMessage !== "undefined") { %>
+        <div class="row mt-4 text-center">
+            <div class="container">
+                <div class="col"><%= lastVisitMessage%></div>
+            </div>
+        </div>
+        <% } %>
     </div>
-    <div class="row mt-4 text-center">
-      <div class="col">
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fab fa-facebook fa-2x"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fab fa-twitter fa-2x"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="text-white">
-              <i class="fab fa-instagram fa-2x"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </footer>

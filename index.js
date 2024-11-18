@@ -40,8 +40,8 @@ evently.use(flash());
 evently.use((req, res, next) => {
     res.locals.salutation = req.flash('salutation') || '';
     res.locals.notification = req.flash('notification') || '';
-    res.locals.loggedIn = req.flash('loggedIn') || '';
-    res.locals.isAdmin = req.flash('isAdmin') || '';
+    res.locals.loggedIn = req.cookies.loggedIn;
+    res.locals.isAdmin = req.cookies.isAdmin;
     res.locals.lastVisitMessage = req.flash('lastVisitMessage') || '';
     next();
 });

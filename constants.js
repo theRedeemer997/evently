@@ -20,7 +20,15 @@ const constants = {
     REJ_SUB: 'Event Rejected 🙇‍♀️',
     REJ_MSG:
         'Thank you for submitting the event for approval. After careful review, we regret to inform you that your event has not met the necessary criteria and has been rejected',
-    COOKIES: ['username', 'connect.sid', 'loggedIn', 'isAdmin', 'typeOf'],
+    COOKIES: [
+        'username',
+        'connect.sid',
+        'loggedIn',
+        'isAdmin',
+        'typeOf',
+        'lastVisit',
+        'uname',
+    ],
     WELCOME_MSG: 'Welcome ${name}! This is your first visit to Evently.',
     VISITED_MSG: 'Welcome ${name}! You visited Evently on ',
 };

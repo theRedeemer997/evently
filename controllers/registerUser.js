@@ -1,3 +1,6 @@
+//get the becrypt dependency
+const bcrypt = require('bcrypt');
+
 //route to perform the post registration part
 const user = require('../model/user');
 const organizer = require('../model/organizer');
@@ -22,18 +25,22 @@ const registerUser = async (req, res) => {
     // console.log("🚀 ~ registerUser ~ email:", email);
     let usr;
     let error;
+    //salt rounds tells the number of times the password should be hashed
+    const saltRounds = 10;
+    //  hash the password which is coming from the form and store in DB
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
     typeOf === undefined
         ? (usr = new user({
               EmailAddress: email,
               FirstName: firstName,
               LastName: lastName,
-              Password: password,
+              Password: hashedPassword,
           }))
         : (usr = new organizer({
               EmailAddress: email,
               FirstName: firstName,
               LastName: lastName,
-              Password: password,
+              Password: hashedPassword,
               OrganizerName: organizationName,
           }));
 

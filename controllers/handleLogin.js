@@ -1,3 +1,6 @@
+//get the becrypt dependency
+const bcrypt = require('bcrypt');
+
 // route to handle the login functionality
 const users = require('../model/user');
 const organizer = require('../model/organizer');
@@ -39,10 +42,10 @@ const handleLogin = async (req, res) => {
             } else {
                 const user = await users.findOne({
                     EmailAddress: email,
-                    Password: password,
                 });
-                console.log('user exists', user);
-                if (user) {
+                //compare if the passwords are same
+                const isMatch = await bcrypt.compare(password, user.Password);
+                if (user && isMatch) {
                     req.session.username = user.EmailAddress;
                     req.session.password = user.Password;
                     req.session.name = user.FirstName + ' ' + user.LastName;
@@ -68,10 +71,11 @@ const handleLogin = async (req, res) => {
         } else {
             const user = await organizer.findOne({
                 EmailAddress: email,
-                Password: password,
             });
+            //compare if the passwords are same
+            const isMatch = await bcrypt.compare(password, user.Password);
             console.log('🚀 ~ handleLogin ~ organizer exists:', user);
-            if (user) {
+            if (user && isMatch) {
                 req.session.username = email;
                 req.session.password = password;
                 req.session.type = constants.SESSION_ORG;

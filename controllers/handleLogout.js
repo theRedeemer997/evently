@@ -14,7 +14,7 @@ const handleLogout = (req, res) => {
             res.clearCookie(cookie);
         }
         res.clearCookie('connect.sid'); // Clear session cookie
-        res.redirect('/login'); // Redirect to login page
+        res.redirect('/'); // Redirect to home page
     });
 };
 

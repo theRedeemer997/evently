@@ -4,10 +4,34 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 //Define the schema for user
 const organizerSchema = new Schema({
-    EmailAddress: String,
-    FirstName: String,
-    LastName: String,
-    Password: String,
-    OrganizerName: String,
+    EmailAddress: {
+        type: String,
+        required: [true, 'EmailAddress is required'],
+        unique: true,
+        trim: true,
+        match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+        maxlength: 60,
+    },
+    FirstName: {
+        type: String,
+        required: [true, 'FirstName is required'],
+        trim: true,
+        maxLength: 60,
+    },
+    LastName: {
+        type: String,
+        required: [true, 'LastName is required'],
+        trim: true,
+        maxLength: 60,
+    },
+    Password: {
+        type: String,
+    },
+    OrganizerName: {
+        type: String,
+        required: [true, 'Organizer Name is required'],
+        trim: true,
+        maxLength: 60,
+    },
 });
 module.exports = mongoose.model('organizers', organizerSchema);

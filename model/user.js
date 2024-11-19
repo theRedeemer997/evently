@@ -27,5 +27,11 @@ const userSchema = new Schema({
     Password: {
         type: String,
     },
+    BookedEvents: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'approvedevents', // Reference to the approvedevents schema
+        },
+    ],
 });
 module.exports = mongoose.model('user', userSchema);

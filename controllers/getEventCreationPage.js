@@ -1,7 +1,7 @@
 const constants = require('../constants');
 
 //route to ge the  create event page
-const getEventBookingPage = (req, res) => {
+const getEventCreationPage = (req, res) => {
     const { typeOf } = req.cookies;
     /*
      *   typeOf === constants.SESSION_ORG ||
@@ -18,4 +18,4 @@ const getEventBookingPage = (req, res) => {
     }
 };
 
-module.exports = getEventBookingPage;
+module.exports = getEventCreationPage;

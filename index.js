@@ -55,12 +55,13 @@ const postRegister = require('./controllers/registerUser');
 const getLoginPage = require('./controllers/getLoginPage');
 const handleLogin = require('./controllers/handleLogin');
 const handleLogout = require('./controllers/handleLogout');
-const getEventBookingPage = require('./controllers/getEventBookingPage');
+const getEventCreationPage = require('./controllers/getEventCreationPage');
 const handleCreateEventAction = require('./controllers/handleCreateEventAction');
 const getManageEventPage = require('./controllers/getManageEventPage');
 const handleEventsApproval = require('./controllers/handleEventsApproval');
 const handleEventsRejection = require('./controllers/handleEventsRejection');
 const handleEventsPage = require('./controllers/getEvents');
+const handleEventBooking = require('./controllers/handleEventBooking');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -88,7 +89,7 @@ evently.get('/login', getLoginPage);
 //post call for login
 evently.post('/login', handleLogin);
 //get call to get the booking form
-evently.get('/createEvent', getEventBookingPage);
+evently.get('/createEvent', getEventCreationPage);
 //post call to handle the event booking
 evently.post(
     '/createEvent',
@@ -103,6 +104,8 @@ evently.get('/manageEvent', getManageEventPage);
 evently.get('/approve/:eventId', handleEventsApproval);
 // call to reject the event by admin
 evently.get('/reject/:eventId', handleEventsRejection);
+// call to get the event booking page
+evently.get('/bookEvent/:eventId', handleEventBooking);
 //get call for logout
 evently.get('/logout', handleLogout);
 

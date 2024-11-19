@@ -5,3 +5,4 @@ package-lock.json
 .vercel
 /.idea/
 TODO.md
+.vscode/launch.json

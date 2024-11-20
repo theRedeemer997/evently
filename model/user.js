@@ -29,9 +29,23 @@ const userSchema = new Schema({
     },
     BookedEvents: [
         {
-            type: Schema.Types.ObjectId,
-            ref: 'approvedevents', // Reference to the approvedevents schema
+            EventId: {
+                type: Schema.Types.ObjectId,
+                ref: 'approvedevents', // Reference to the approvedevents schema
+            },
+            EventName: {
+                type: String,
+            },
+            Tickets: {
+                type: String,
+            },
+            FinalPrice: {
+                type: String,
+            },
         },
+
+        // EventName: evt.EventName,
+        // Tickets: tickets,
     ],
 });
 module.exports = mongoose.model('user', userSchema);

@@ -62,7 +62,9 @@ const handleEventsApproval = require('./controllers/handleEventsApproval');
 const handleEventsRejection = require('./controllers/handleEventsRejection');
 const handleEventsPage = require('./controllers/getEvents');
 const getEventBookingPage = require('./controllers/getEventBookingPage');
-const handleEventBooking = require('./controllers/handleEventBooking');
+const handleEventBookingAction = require('./controllers/handleEventBooking');
+const handleCompleteEventBookingOrder = require('./controllers/handleCompleteOrder');
+const paypal = require('./services/paypal');
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -108,7 +110,9 @@ evently.get('/reject/:eventId', handleEventsRejection);
 // call to get the event booking page
 evently.get('/bookEvent/:eventId', getEventBookingPage);
 // call to handle the booking of event
-evently.post('/confirmBooking', handleEventBooking);
+evently.post('/confirmBooking', handleEventBookingAction);
+//call to handle the paypal
+evently.get('/complete-order', handleCompleteEventBookingOrder);
 //get call for logout
 evently.get('/logout', handleLogout);
 

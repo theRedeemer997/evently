@@ -357,6 +357,27 @@ body {
     transform: translateY(0);
 }
 
+/*star-rating*/
+.star-rating {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.star-rating input,
+.rating input {
+    display: none;
+}
+.star-rating label,
+.rating label {
+    color: #ddd;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.high {
+    color: #ffe400 !important;
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;

@@ -16,6 +16,7 @@ const connectDB = async () => {
         await user.createCollection();
         await organizer.createCollection();
         await createdEvents.createCollection();
+        await approvedEvents.createCollection();
         console.log('collections are created..');
         console.log('DB connected successfully on host ', conn.connection.host);
     } catch (error) {

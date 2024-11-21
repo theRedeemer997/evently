@@ -44,5 +44,25 @@ const userSchema = new Schema({
             },
         },
     ],
+    SubmittedRatings: [
+        {
+            RatingId: {
+                type: Schema.Types.ObjectId,
+                ref: 'rating', // Reference to the rating schema
+            },
+            Rating: {
+                type: Number,
+                required: true,
+            },
+            Feedback: {
+                type: String,
+                maxlength: 500,
+            },
+            Date: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
 });
 module.exports = mongoose.model('user', userSchema);

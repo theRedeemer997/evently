@@ -43,7 +43,7 @@ const handleLogin = async (req, res) => {
                 const user = await users.findOne({
                     EmailAddress: email,
                 });
-                //compare if the passwords are same
+                //compare if the passwords are same 
                 const isMatch = await bcrypt.compare(password, user.Password);
                 if (user && isMatch) {
                     req.session.username = user.EmailAddress;

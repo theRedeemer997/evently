@@ -37,10 +37,13 @@
             <a class="nav-link" href="/createEvent">Create Event</a>
           </li>
         <% } %>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <% if (typeof loggedIn !== 'undefined') { %>
+
+        <% if (typeof loggedIn !== 'undefined') { %> 
+          <% if (typeof typeOf !== 'undefined' && typeOf === 'user') { %> 
+            <li class="nav-item">
+              <a class="nav-link " href="/profile">Profile</a>
+            </li>
+          <%}%>
         <li class="nav-item">
           <a class="nav-link btn btn-signup" href="/logout">Logout</a>
         </li>

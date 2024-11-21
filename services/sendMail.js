@@ -17,7 +17,7 @@ const sendMail = async (to, subject, msg) => {
         const info = await transporter.sendMail({
             to: to, // list of receivers
             subject: subject, // Subject line
-            html: msg, // html body
+            html: msg + '<br><br>Regards,<br>The Evently Team', // html body
         });
 
         console.log('Message sent: %s', info.messageId);

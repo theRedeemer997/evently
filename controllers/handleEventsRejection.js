@@ -25,7 +25,11 @@ const handleEventsRejection = async (req, res) => {
         handleDeleteImage(event.FileName, event.OrganizerName, event.EventName);
         await sendMail(
             event.OrganizerEmail,
-            constants.REJ_SUB,
+            generateDynamicMessage(
+                constants.REJ_SUB,
+                '${eventName}',
+                event.EventName
+            ),
             constants.REJ_MSG
         );
         //delete the same events from created events collection

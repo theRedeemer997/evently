@@ -1,0 +1,36 @@
+  <%-include('partials/header',{tab:'Evently'})-%>
+  <div class="container my-5">
+    <h1 class="text-center mb-4"><%= event.EventName %></h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <img 
+                    src="<%= event.ImageUrl %>" 
+                    class="card-img-top event-img" 
+                    alt="<%= event.EventName %>"
+                >
+                <div class="card-body event-details">
+                    <h2 class="card-title"><%= event.EventName %></h2>
+                    <p class="text-muted">By: <%= event.OrganizerName %></p>
+                    <p class="mt-4">
+                        <strong>Description:</strong><br>
+                        <%= event.Description %>
+                    </p>
+                    <p>
+                        <strong>Available Slots:</strong> <%= event.SlotsAvailable %>
+                    </p>
+                    <p>
+                        <strong>Price:</strong> $<%= event.Price %>
+                    </p>
+                    <p>
+                        <strong>Location:</strong> <%= event.Address %>
+                    </p>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/bookEvent/<%= event._id %>" class="btn btn-success" onclick="showBootstrapLoader()">Book Event</a>
+                        <a href="/events" class="btn btn-secondary">Back to Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

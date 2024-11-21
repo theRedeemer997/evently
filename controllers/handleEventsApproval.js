@@ -2,6 +2,7 @@ const sendMail = require('../services/sendMail');
 const createdevents = require('../model/createdevents');
 const approvedevents = require('../model/approvedevents');
 const constants = require('../constants');
+const generateDynamicMessage = require('../services/generateDynamicMessage');
 const handleEventsApproval = async (req, res) => {
     try {
         const { eventId } = req.params;
@@ -23,7 +24,11 @@ const handleEventsApproval = async (req, res) => {
         await approvedEvents.save();
         await sendMail(
             event.OrganizerEmail,
-            constants.APP_SUB,
+            generateDynamicMessage(
+                constants.APP_SUB,
+                '${eventName}',
+                event.EventName
+            ),
             constants.APP_MSG
         );
         //delete the same events from createdevents collection

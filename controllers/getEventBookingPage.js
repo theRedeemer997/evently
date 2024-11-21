@@ -1,20 +1,20 @@
+const approvedEvents = require('../model/approvedevents');
 const constants = require('../constants');
-
-//route to ge the  create event page
-const getEventBookingPage = (req, res) => {
-    const { typeOf } = req.cookies;
-    /*
-     *   typeOf === constants.SESSION_ORG ||
-     *   req.session.type === constants.SESSION_ORG
-     */
-    if (typeOf === constants.SESSION_ORG) {
-        res.render('createvent');
-    } else {
-        // let salutation = constants.SALUTATION_ORG;
-        // let notification = constants.CREATE_EVNT_ERR;
-        req.flash('salutation', constants.SALUTATION_ORG);
-        req.flash('notification', constants.CREATE_EVNT_ERR);
-        res.redirect('/');
+const getEventBookingPage = async (req, res) => {
+    const { loggedIn, typeOf } = req.cookies;
+    try {
+        if (loggedIn === constants.LOGGED_IN && typeOf === 'user') {
+            const { eventId } = req.params;
+            const findEvt = await approvedEvents.findById(eventId);
+            console.log('🚀 ~ handleEventBooking ~ findEvt:', findEvt);
+            res.render('bookevent', { event: findEvt });
+        } else {
+            req.flash('salutation', constants.SALUTATION_ORG);
+            req.flash('notification', constants.BOOK_EVNT_ERR);
+            res.redirect('/');
+        }
+    } catch (error) {
+        console.log('🚀 ~ handleEventBooking ~ error:', error.message);
     }
 };
 

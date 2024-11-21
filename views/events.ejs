@@ -17,7 +17,7 @@
                             <h5 class="card-title mb-0"><%=event.EventName%></h5>
                             <div class="mb-3"><span class="badge rounded-pill bg-success"><%=event.OrganizerName%></span></div>
                             <p class="card-text">
-                                <%=event.Description%>
+                                 <%=  event.Description.substring(0, 100) + '...' %>
                             </p>
                             <p class="card-text">
                                 Organizer:&nbsp;<%=event.OrganizerName%>
@@ -33,6 +33,9 @@
                             </p>
                             <a href="/bookEvent/<%= event._id %>" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()"
                             >Book</a
+                            >
+                            <a href="/viewEvent/<%= event._id %>" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()"
+                            >View</a
                             >
                         </div>
                     </div>

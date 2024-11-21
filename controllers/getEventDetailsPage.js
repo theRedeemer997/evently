@@ -6,6 +6,7 @@ const getEventDetailsPage = async (req, res) => {
     const evt = await events.findById(eventId);
     console.log('🚀 ~ getEventDetailsPage ~ evt:', evt);
     if (username !== undefined) {
+        
         const usr = await user.findOne({ EmailAddress: username });
         res.render('viewEvent', { event: evt, user: usr });
     } else res.render('viewEvent', { event: evt });

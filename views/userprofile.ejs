@@ -1,52 +1,80 @@
-  <%-include('partials/header',{tab:'Evently'})-%>
-  <div class="container mt-5">
-        <div class="row">
-            <!-- User Details -->
-            <div class="col-md-4">
-                <h2 class="mb-4">User Details</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <p><strong>Email Address:</strong> <%= user.EmailAddress %></p>
-                        <p><strong>First Name:</strong> <%= user.FirstName %></p>
-                        <p><strong>Last Name:</strong> <%= user.LastName %></p>
-                    </div>
+<%-include('partials/header',{tab:'Evently'})-%>
+<div class="container mt-5">
+    <div class="row">
+        <!-- User Details -->
+        <div class="col-md-4">
+            <h2 class="mb-4">User Details</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p><strong>Email Address:</strong> <%= user.EmailAddress %></p>
+                    <p><strong>First Name:</strong> <%= user.FirstName %></p>
+                    <p><strong>Last Name:</strong> <%= user.LastName %></p>
                 </div>
             </div>
+        </div>
 
-            <!-- Booked Events -->
-            <div class="col-md-8">
-                <h2 class="mb-4">Booked Events</h2>
-                <% if (user.BookedEvents && user.BookedEvents.length > 0) { %>
-                    <table class="table table-striped">
-                        <thead class="table-primary">
+        <!-- Booked Events -->
+        <div class="col-md-8">
+            <h2 class="mb-4">Booked Events</h2>
+            <% if (user.BookedEvents && user.BookedEvents.length > 0) { %>
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Tickets</th>
+                            <th>Final Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% user.BookedEvents.forEach(event => { %>
                             <tr>
-                                <th>Event Name</th>
-                                <th>Tickets</th>
-                                <th>Final Price</th>
-                                <th>Action</th>
+                                <td><%= event.EventName %></td>
+                                <td><%= event.Tickets %></td>
+                                <td><%= event.FinalPrice %></td>
+                                <td>
+                                    <form action="/cancel/ticket" method="POST">
+                                        <input type="hidden" name="tickets" value="<%= event.Tickets %>">
+                                        <input type="hidden" name="eventId" value="<%= event.EventId %>">
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                    </form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <% user.BookedEvents.forEach(event => { %>
-                                <tr>
-                                    <td><%= event.EventName %></td>
-                                    <td><%= event.Tickets %></td>
-                                    <td><%= event.FinalPrice %></td>
-                                    <td>
-                                        <form action="/cancel/ticket" method="POST">
-                                            <input type="hidden" name="tickets" value="<%= event.Tickets %>">
-                                            <input type="hidden" name="eventId" value="<%= event.EventId %>">
-                                            <button type="submit" class="btn btn-danger">Cancel</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
-                <% } else { %>
-                    <p class="text-muted">No events booked yet.</p>
-                <% } %>
-            </div>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-muted">No events booked yet.</p>
+            <% } %>
         </div>
     </div>
 
+    <!-- User Feedback Section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="mb-4">Your Feedback</h2>
+            <% if (user.SubmittedRatings && user.SubmittedRatings.length > 0) { %>
+                <table class="table table-striped">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Rating</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% user.SubmittedRatings.forEach(feedback => { %>
+                            <tr>
+                                <td><%= feedback.EventName %></td>
+                                <td><%= feedback.Rating %> / 5</td>
+                                <td><%= feedback.Feedback %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-muted">No feedback provided yet.</p>
+            <% } %>
+        </div>
+    </div>
+</div>

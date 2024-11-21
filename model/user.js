@@ -50,6 +50,9 @@ const userSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 ref: 'rating', // Reference to the rating schema
             },
+            EventName: {
+                type: String,
+            },
             Rating: {
                 type: Number,
                 required: true,

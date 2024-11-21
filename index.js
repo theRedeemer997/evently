@@ -38,8 +38,8 @@ evently.use(
 evently.use(flash());
 // make sure that salutation and notification are accessible to all the ejs pages
 evently.use((req, res, next) => {
-    res.locals.salutation = req.flash('salutation') || '';
-    res.locals.notification = req.flash('notification') || '';
+    res.locals.salutation = req.flash('salutation');
+    res.locals.notification = req.flash('notification');
     res.locals.loggedIn = req.cookies.loggedIn;
     res.locals.isAdmin = req.cookies.isAdmin;
     res.locals.lastVisitMessage = req.flash('lastVisitMessage') || '';

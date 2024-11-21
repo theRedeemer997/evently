@@ -43,9 +43,6 @@ const userSchema = new Schema({
                 type: String,
             },
         },
-
-        // EventName: evt.EventName,
-        // Tickets: tickets,
     ],
 });
 module.exports = mongoose.model('user', userSchema);

@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label for="tickets" class="form-label">Number of Tickets</label>
-                <input type="number" class="form-control" name="tickets" min="1" max="<%= event.SlotsAvailable %>" id="tickets" required/> 
+                <input type="number" class="form-control" name="tickets"  id="tickets" required/> 
             </div>
             <div class="mb-3">
                 <label for="finalPrice" class="form-label">Final Price</label>
@@ -36,6 +36,12 @@
             <input type="hidden" name="eventId" value="<%= event._id %>">
             <button type="submit" class="btn btn-primary">Confirm Booking</button>
             <a href="/events" class="btn btn-danger">Cancel</a>
+            <% if (typeof err !== 'undefined') { %>
+                <div class="col-md-8 text-center">
+                    <span class="error mb-5"> <%= err %></span>
+                    <br>
+                </div>
+            <% } %> 
         </form>
     </div>
     <%- include('partials/footer') %>

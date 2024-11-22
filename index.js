@@ -38,8 +38,8 @@ evently.use(
 evently.use(flash());
 // make sure that salutation and notification are accessible to all the ejs pages
 evently.use((req, res, next) => {
-    res.locals.salutation = req.flash('salutation') || '';
-    res.locals.notification = req.flash('notification') || '';
+    res.locals.salutation = req.flash('salutation');
+    res.locals.notification = req.flash('notification');
     res.locals.loggedIn = req.cookies.loggedIn;
     res.locals.isAdmin = req.cookies.isAdmin;
     res.locals.lastVisitMessage = req.flash('lastVisitMessage') || '';
@@ -68,6 +68,9 @@ const handleUserProfilePage = require('./controllers/getUserProfilePage');
 const paypal = require('./services/paypal');
 const handleCancelEventAction = require('./controllers/handleCancelEvents');
 const getEventDetailsPage = require('./controllers/getEventDetailsPage');
+const handleUserFeedback = require('./controllers/handleUserFeedback');
+const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
+
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -120,8 +123,12 @@ evently.post('/confirmBooking', handleEventBookingAction);
 evently.get('/complete-order', handleCompleteEventBookingOrder);
 //call to handle the cancel event
 evently.post('/cancel/ticket', handleCancelEventAction);
+//call to post user feedback about the event
+evently.post('/action/saveFeedback', handleUserFeedback);
 // call to get the user profile page
 evently.get('/profile', handleUserProfilePage);
+//call to fetch the events
+evently.get('/searchEvents', handleSearchEvent);
 //get call for logout
 evently.get('/logout', handleLogout);
 

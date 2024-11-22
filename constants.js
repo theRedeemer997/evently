@@ -10,6 +10,7 @@ const constants = {
     EVENT_BOOKING_ALERT: 'Your event is pending to be approved by the admin.',
     CREATE_EVNT_ERR: 'Please login with organizer credentials to create event',
     BOOK_EVNT_ERR: 'Please login with user credentials to book event',
+    FEEDBACK_EVNT_ERR: 'Please login with user credentials to provide feedback',
     TICKET_INP_G_ERR:
         'Please input a number  which is less than the available tickets',
     SALUTATION_ORG: 'Hi !!',

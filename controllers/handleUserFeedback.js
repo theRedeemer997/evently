@@ -17,9 +17,13 @@ const handleUserFeedback = async (req, res) => {
             const { rating, customerFeedback, userId, eventId, eventName } =
                 req.body;
             console.log('🚀 ~ handleUserFeedback ~ userId:', userId);
+            console.log('🚀 ~ handleUserFeedback ~ eventId:', eventId);
             console.log('🚀 ~ handleUserFeedback ~ rating:', rating);
-            const rat = ratings.findById({ EventId: eventId });
-            if (rat === undefined) {
+            const rat = await ratings.findOne({
+                EventId: eventId,
+            });
+            console.log('🚀 ~ handleUserFeedback ~ rat:', rat);
+            if (rat === null) {
                 const newRating = new ratings({
                     UserId: new mongoose.Types.ObjectId(userId),
                     EventId: new mongoose.Types.ObjectId(eventId),

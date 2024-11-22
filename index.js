@@ -69,6 +69,7 @@ const paypal = require('./services/paypal');
 const handleCancelEventAction = require('./controllers/handleCancelEvents');
 const getEventDetailsPage = require('./controllers/getEventDetailsPage');
 const handleUserFeedback = require('./controllers/handleUserFeedback');
+const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
 
 //connect the db
 const DB = require('./connectDB');
@@ -126,6 +127,8 @@ evently.post('/cancel/ticket', handleCancelEventAction);
 evently.post('/action/saveFeedback', handleUserFeedback);
 // call to get the user profile page
 evently.get('/profile', handleUserProfilePage);
+//call to fetch the events
+evently.get('/searchEvents', handleSearchEvent);
 //get call for logout
 evently.get('/logout', handleLogout);
 

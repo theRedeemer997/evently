@@ -3,6 +3,7 @@ const createdevents = require('../model/createdevents');
 const rejectedEvent = require('../model/rejectedevents');
 const handleDeleteImage = require('../services/handleDeleteImage');
 const constants = require('../constants');
+const admin = require('../model/admin');
 const handleEventsRejection = async (req, res) => {
     try {
         const { eventId } = req.params;
@@ -19,8 +20,16 @@ const handleEventsRejection = async (req, res) => {
             ImageUrl: event.ImageUrl,
             FileName: event.FileName,
         });
+        const adm = new admin({
+            OrganizerName: event.OrganizerName,
+            EventName: event.EventName,
+            Address: event.Address,
+            EventDateTime: event.EventDateTime,
+            Action: 'Rejected',
+        });
         //save the event into approved events collection
         await rejectedEvents.save();
+        await adm.save();
         //delete the image from firebase
         handleDeleteImage(event.FileName, event.OrganizerName, event.EventName);
         await sendMail(

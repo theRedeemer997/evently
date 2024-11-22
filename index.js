@@ -70,6 +70,7 @@ const handleCancelEventAction = require('./controllers/handleCancelEvents');
 const getEventDetailsPage = require('./controllers/getEventDetailsPage');
 const handleUserFeedback = require('./controllers/handleUserFeedback');
 const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
+const getAdminProfile = require('./controllers/getAdminProfile');
 
 //connect the db
 const DB = require('./services/connectDB');
@@ -129,6 +130,8 @@ evently.post('/action/saveFeedback', handleUserFeedback);
 evently.get('/profile', handleUserProfilePage);
 //call to fetch the events
 evently.get('/searchEvents', handleSearchEvent);
+//call the get the admin panel
+evently.get('/admin/profile', getAdminProfile);
 //get call for logout
 evently.get('/logout', handleLogout);
 

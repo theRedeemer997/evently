@@ -1,10 +1,11 @@
 const constants = require('../constants');
 const formatDateTime = require('../services/formatDataTime');
 const generateDynamicMessage = require('../services/generateDynamicMessage');
+const createdEvents = require('../model/createdevents');
 
 let lastVisitMessage = '';
 // route to get the home page
-const getHomePage = (req, res) => {
+const getHomePage = async (req, res) => {
     const { isAdmin, username, loggedIn, typeOf, lastVisit, uname } =
         req.cookies;
     console.log('🚀 ~ getHomePage ~ lastVisit:', lastVisit);
@@ -18,7 +19,9 @@ const getHomePage = (req, res) => {
         username !== undefined &&
         loggedIn !== undefined
     ) {
-        res.render('home', { isAdmin, loggedIn });
+        const evts = await createdEvents.find();
+        let length = evts.length;
+        res.render('home', { isAdmin, loggedIn, length });
     }
     //in case of user details found in the cookie then,
     //in case of organizer details found in the cookie then,

@@ -10,12 +10,17 @@ const createdEvents = require('./model/createdevents');
 const approvedEvents = require('./model/approvedevents');
 //ge the rejected events collection
 const rejectedEvents = require('./model/rejectedevents');
+//ge the rating schema
+const rating = require('./model/ratings');
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.mongoUri);
         await user.createCollection();
         await organizer.createCollection();
         await createdEvents.createCollection();
+        await approvedEvents.createCollection();
+        await rejectedEvents.createCollection();
+        await rating.createCollection();
         console.log('collections are created..');
         console.log('DB connected successfully on host ', conn.connection.host);
     } catch (error) {

@@ -1,6 +1,6 @@
+const approvedEvents = require('../model/approvedevents');
 //get the becrypt dependency
 const bcrypt = require('bcrypt');
-
 // route to handle the login functionality
 const users = require('../model/user');
 const organizer = require('../model/organizer');
@@ -43,6 +43,10 @@ const handleLogin = async (req, res) => {
                 const user = await users.findOne({
                     EmailAddress: email,
                 });
+                const { eID, page } = req.cookies;
+                console.log('🚀 ~ handleLogin ~ page:', page);
+                console.log('🚀 ~ handleLogin ~ eID:', eID);
+                const evt = await approvedEvents.findById(eID);
                 //compare if the passwords are same
                 const isMatch = await bcrypt.compare(password, user.Password);
                 if (user && isMatch) {
@@ -62,7 +66,10 @@ const handleLogin = async (req, res) => {
                     //req.flash('lastVisitMessage', lastVisitMessage);
                     console.log('🚀 ~ handleLogin ~ req.session:', req.session);
                     //res.render('home', { loggedIn: constants.LOGGED_IN });
-                    res.redirect('/');
+                    if (eID && page) {
+                        //res.render('bookevent', { event: evt });
+                        res.redirect(`/bookevent/${eID}`);
+                    } else res.redirect('/');
                 } else {
                     err = constants.LOGIN_ERR;
                     res.render('login', { err });

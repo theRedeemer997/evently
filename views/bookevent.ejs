@@ -1,0 +1,64 @@
+<%- include('partials/header', { tab: 'Evently' }) %>
+<%-include('partials/navbar')-%>
+    <%-include('partials/loader')-%>
+    <div class="container py-5">
+        <h2>Confirm Event Booking</h2>
+        <form action="/confirmBooking" method="POST" onsubmit="showBootstrapLoader()">
+            <div class="mb-3">
+                <label for="eventName" class="form-label">Event Name</label>
+                <input type="text" id="eventName" class="form-control" value="<%= event.EventName %>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="organizer" class="form-label">Organizer</label>
+                <input type="text" id="organizer" class="form-control" value="<%= event.OrganizerName %>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="slotsAvailable" class="form-label">Slots Available</label>
+                <input type="text" id="slotsAvailable" class="form-control" value="<%= event.SlotsAvailable %>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" id="price" class="form-control" value="<%= event.Price %>" id="price" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" class="form-control" rows="4" readonly><%= event.Description %></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="tickets" class="form-label">Number of Tickets</label>
+                <input type="number" class="form-control" name="tickets"  id="tickets" required/> 
+            </div>
+            <div class="mb-3">
+                <label for="finalPrice" class="form-label">Final Price</label>
+                <input type="number" class="form-control" name="finalPrice" id="finalPrice" value="0" readonly/> 
+            </div>
+            <!-- Hidden input to carry event ID -->
+            <input type="hidden" name="eventId" value="<%= event._id %>">
+            <button type="submit" class="btn btn-primary">Confirm Booking</button>
+            <a href="/events" class="btn btn-danger">Cancel</a>
+            <% if (typeof err !== 'undefined') { %>
+                <div class="col-md-8 text-center">
+                    <span class="error mb-5"> <%= err %></span>
+                    <br>
+                </div>
+            <% } %> 
+        </form>
+    </div>
+    <%- include('partials/footer') %>
+    <script>
+        let ticketsInput = document.getElementById("tickets");
+        let price = document.getElementById("price");
+        let finalPrice = document.getElementById("finalPrice");
+        ticketsInput.addEventListener("input", () => {
+            // console.log("🚀 ~ ticketsInput:", ticketsInput.value)
+           // console.log("🚀 ~ price:", price.value)
+           // console.log("🚀 ~ finalPrice:", finalPrice.value)
+            const final = parseInt(ticketsInput.value) * parseFloat(price.value);
+           // console.log("🚀 ~ ticketsInput.addEventListener ~ final:", final)
+            finalPrice.value = final.toFixed(2);
+        })
+
+    </script>
+    <script  src="/custom/js/main.js"></script>
+
+

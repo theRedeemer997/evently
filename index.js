@@ -38,8 +38,8 @@ evently.use(
 evently.use(flash());
 // make sure that salutation and notification are accessible to all the ejs pages
 evently.use((req, res, next) => {
-    res.locals.salutation = req.flash('salutation') || '';
-    res.locals.notification = req.flash('notification') || '';
+    res.locals.salutation = req.flash('salutation');
+    res.locals.notification = req.flash('notification');
     res.locals.loggedIn = req.cookies.loggedIn;
     res.locals.isAdmin = req.cookies.isAdmin;
     res.locals.lastVisitMessage = req.flash('lastVisitMessage') || '';
@@ -55,12 +55,22 @@ const postRegister = require('./controllers/registerUser');
 const getLoginPage = require('./controllers/getLoginPage');
 const handleLogin = require('./controllers/handleLogin');
 const handleLogout = require('./controllers/handleLogout');
-const getEventBookingPage = require('./controllers/getEventBookingPage');
+const getEventCreationPage = require('./controllers/getEventCreationPage');
 const handleCreateEventAction = require('./controllers/handleCreateEventAction');
 const getManageEventPage = require('./controllers/getManageEventPage');
 const handleEventsApproval = require('./controllers/handleEventsApproval');
 const handleEventsRejection = require('./controllers/handleEventsRejection');
 const handleEventsPage = require('./controllers/getEvents');
+const getEventBookingPage = require('./controllers/getEventBookingPage');
+const handleEventBookingAction = require('./controllers/handleEventBooking');
+const handleCompleteEventBookingOrder = require('./controllers/handleCompleteOrder');
+const handleUserProfilePage = require('./controllers/getUserProfilePage');
+const paypal = require('./services/paypal');
+const handleCancelEventAction = require('./controllers/handleCancelEvents');
+const getEventDetailsPage = require('./controllers/getEventDetailsPage');
+const handleUserFeedback = require('./controllers/handleUserFeedback');
+const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
+
 //connect the db
 const DB = require('./connectDB');
 DB();
@@ -88,7 +98,7 @@ evently.get('/login', getLoginPage);
 //post call for login
 evently.post('/login', handleLogin);
 //get call to get the booking form
-evently.get('/createEvent', getEventBookingPage);
+evently.get('/createEvent', getEventCreationPage);
 //post call to handle the event booking
 evently.post(
     '/createEvent',
@@ -103,6 +113,22 @@ evently.get('/manageEvent', getManageEventPage);
 evently.get('/approve/:eventId', handleEventsApproval);
 // call to reject the event by admin
 evently.get('/reject/:eventId', handleEventsRejection);
+// call to get the event booking page
+evently.get('/bookEvent/:eventId', getEventBookingPage);
+// call to get the view event page
+evently.get('/viewEvent/:eventId', getEventDetailsPage);
+// call to handle the booking of event
+evently.post('/confirmBooking', handleEventBookingAction);
+//call to handle the paypal
+evently.get('/complete-order', handleCompleteEventBookingOrder);
+//call to handle the cancel event
+evently.post('/cancel/ticket', handleCancelEventAction);
+//call to post user feedback about the event
+evently.post('/action/saveFeedback', handleUserFeedback);
+// call to get the user profile page
+evently.get('/profile', handleUserProfilePage);
+//call to fetch the events
+evently.get('/searchEvents', handleSearchEvent);
 //get call for logout
 evently.get('/logout', handleLogout);
 

@@ -7,6 +7,7 @@
                 <div class="d-block d-md-flex">
                     <div class="col-md-6 col-sm-12">
                         <div class="col-md-6 py-5">
+                            <a href="/" class="btn btn-secondary mb-3" >BACK</a>
                             <h1 class="display-3 fw-bold">Create an account</h1>
                         </div>
                         <div class="col-12">
@@ -14,24 +15,24 @@
                                 <div class="mb-3 col-md-8">
                                   <label for="email" class="form-label">Email address</label>
                                   <% if (typeof email !== 'undefined') { %>
-                                    <input type="email" class="form-control" name="email"  aria-describedby="emailHelp" value="<%= email %>" required>
+                                    <input type="text" class="form-control" name="email"  aria-describedby="emailHelp" value="<%= email %>" >
                                   <% } else { %>
-                                    <input type="email" class="form-control" name="email"  aria-describedby="emailHelp" required>
+                                    <input type="text" class="form-control" name="email"  aria-describedby="emailHelp" >
                                   <% } %>
                                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3 col-md-8">
                                   <label for="confirmEmail" class="form-label">Confirm Email</label>
-                                  <input type="email" name="confirmEmail" class="form-control"  required>
+                                  <input type="text" name="confirmEmail" class="form-control">
                                 </div>
                                 <div class="d-block d-md-flex justify-content-between col-md-8">
                                     <div class="col-12 col-md-5">
                                         <div class="mb-3">
                                             <label for="firstName" class="form-label">First Name</label>
                                             <% if (typeof firstName !== 'undefined') { %>
-                                                <input type="text" name="firstName" class="form-control"  value="<%=firstName %>" required>
+                                                <input type="text" name="firstName" class="form-control"  value="<%=firstName %>">
                                             <% } else { %>
-                                                <input type="text" name="firstName" class="form-control"  required>
+                                                <input type="text" name="firstName" class="form-control" >
                                             <% } %>
                                         </div>
                                     </div>
@@ -39,9 +40,9 @@
                                         <div class="mb-3">
                                             <label for="lastName" class="form-label">Last Name</label>
                                             <% if (typeof firstName !== 'undefined') { %>
-                                                <input type="text" name="lastName" class="form-control" value="<%=lastName %>"  required>
+                                                <input type="text" name="lastName" class="form-control" value="<%=lastName %>"  >
                                             <% } else { %>
-                                                <input type="text" name="lastName" class="form-control" required>
+                                                <input type="text" name="lastName" class="form-control" >
                                             <% } %>
                                         </div>
                                     </div>
@@ -66,19 +67,25 @@
                                         <input type="text"  name="organizationName" class="form-control">   
                                     <% } %>
                                 </div>
- 
+                                
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+                                </div>
+
                                 <% if (typeof error !== 'undefined') { %>
-                                    <div class="col-md-8">
-                                        <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+                                    <div class="col-md-8 text-center">
+                                            <% for (let err of error ) { %>
+                                            <span class="error mb-5"> <%= err %></span>
+                                            <br>
+                                            <% } %>
+                                        </div>
+                                <% } %>
+                                <% if (typeof err !== 'undefined') { %>
+                                    <div class="col-md-8 text-center">
+                                        <span class="error mb-5"> <%= err %></span>
+                                        <br>
                                     </div>
-                                    <div class="col-md-8 d-flex justify-content-center">
-                                        <span class="error mb-5"> <%= error %></span>
-                                    </div>
-                                <% } else { %> 
-                                    <div class="col-md-8">
-                                        <button type="submit" class="btn btn-primary w-100 mb-5">Create Account</button>
-                                    </div>
-                                <% } %>                                   
+                                <% } %>                       
                             </form>
                         </div>
                     </div>

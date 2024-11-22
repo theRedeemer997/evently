@@ -13,40 +13,84 @@
                         <form>
                             <div class="mb-3 col-md-8">
                                 <label for="organizername" class="form-label">Organizer Name</label>
-                                <input type="text" class="form-control" name="organizername"   required>
+                                <% if (typeof organizername !== 'undefined') { %>
+                                    <input type="text" class="form-control" name="organizername" value="<%= organizername %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="organizername">
+                                <% } %>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="organizeremail" class="form-label">Organizer Email</label>
-                                <input type="text" class="form-control" name="organizeremail"   required>
+                                <% if (typeof organizeremail !== 'undefined') { %>
+                                    <input type="text" class="form-control" name="organizeremail" value="<%= organizeremail %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="organizeremail">
+                                <% } %>
+                                
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="eventname" class="form-label">Event Name</label>
-                                <input type="text" class="form-control" name="eventname"   required>
+                                 <% if (typeof eventname !== 'undefined') { %>
+                                    <input type="text" class="form-control" name="eventname" value="<%= eventname %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="eventname">
+                                <% } %>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="slotsavailable" class="form-label">Available slots </label>
-                                <input type="number" name="slotsavailable" class="form-control" id="slotsavailable" required>
+                                 <% if (typeof slotsavailable !== 'undefined') { %>
+                                    <input type="text" class="form-control" name="slotsavailable" value="<%= slotsavailable %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="slotsavailable">
+                                <% } %>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="price" class="form-label">Price </label>
-                                <input type="text" name="price" class="form-control" id="price" required>
+                                <% if (typeof price !== 'undefined') { %>
+                                    <input type="text" class="form-control" name="price" value="<%= price %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control" name="price">
+                                <% } %>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="description" class="form-label">Description </label>
                                 <!-- <input type="text" name="description" class="form-control" id="description" required> -->
-                                <textarea class="form-control" type="text" name="description" aria-label="With textarea" id="description" required></textarea>
+                                 <% if (typeof description !== 'undefined') { %>
+                                    <textarea class="form-control" type="text" name="description" aria-label="With textarea" id="description"><%= description %></textarea>
+                                <% } else { %>
+                                    <textarea class="form-control" type="text" name="description" aria-label="With textarea" id="description"></textarea>
+                                <% } %>
+                                
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="eventaddress" class="form-label">Event Address</label>
-                                <input type="text" name="eventaddress" class="form-control" id="eventaddress" required>
+                                <% if (typeof eventaddress !== 'undefined') { %>
+                                    <input type="text" name="eventaddress" class="form-control" id="eventaddress" value="<%= eventaddress %>">
+                                <% } else { %>
+                                    <input type="text" name="eventaddress" class="form-control" id="eventaddress">
+                                <% } %>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="eventImage" class="form-label">Event Images</label>
-                                <input class="form-control" type="file" id="formFile" name="eventImage" required>
+                                <input class="form-control" type="file" id="formFile" name="eventImage">
                             </div>
                             <div class="col-md-8">
                                 <button type="submit" class="btn btn-primary w-100 mb-5">Create Event</button>
                             </div>
+                            <% if (typeof error !== 'undefined') { %>
+                                <div class="col-md-8 text-center">
+                                    <% for (let err of error ) { %>
+                                        <span class="error mb-5"> <%= err %></span>
+                                        <br>
+                                        <% } %>
+                                    </div>
+                            <% } %>
+                            <% if (typeof err !== 'undefined') { %>
+                                <div class="col-md-8 text-center">
+                                    <span class="error mb-5"> <%= err %></span>
+                                    <br>
+                                </div>
+                            <% } %>   
                         </form>
                     </div>
                 </div>

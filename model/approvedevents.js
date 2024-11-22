@@ -13,5 +13,28 @@ const approvedEventsSchema = new Schema({
     Address: String,
     ImageUrl: String,
     FileName: String,
+    Ratings: [
+        {
+            RatingId: {
+                type: Schema.Types.ObjectId,
+                ref: 'rating', // Reference to the rating schema
+            },
+            EventName: {
+                type: String,
+            },
+            Rating: {
+                type: Number,
+                required: true,
+            },
+            Feedback: {
+                type: String,
+                maxlength: 500,
+            },
+            Date: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
 });
 module.exports = mongoose.model('approvedevents', approvedEventsSchema);

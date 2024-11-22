@@ -1,0 +1,114 @@
+<%- include('partials/header', { tab: 'Evently' }) %>
+<div class="container my-5">
+  <!-- Event Title -->
+ <a href="/events" class="btn btn-secondary">Back to Events</a>
+  <h1 class="text-center mb-4"><%= event.EventName %></h1>
+  
+  <!-- Event Details and Image -->
+  <div class="row">
+    <!-- Event Details -->
+    <div class="col-12 col-md-6">
+      <div class="card-body event-details">
+        <h2 class="card-title"><%= event.EventName %></h2>
+        <p class="text-muted">By: <%= event.OrganizerName %></p>
+        <p class="mt-4">
+          <strong>Description:</strong><br>
+          <%= event.Description %>
+        </p>
+        <p>
+          <strong>Available Slots:</strong> <%= event.SlotsAvailable %>
+        </p>
+        <p>
+          <strong>Price:</strong> $<%= event.Price %>
+        </p>
+        <p>
+          <strong>Location:</strong> <%= event.Address %>
+        </p>
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/bookEvent/<%= event._id %>" class="btn btn-success" onclick="showBootstrapLoader()">Book Event</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Image -->
+    <div class="col-12 col-md-6">
+      <img 
+        src="<%= event.ImageUrl %>" 
+        class="img-fluid rounded shadow" 
+        alt="<%= event.EventName %>"
+      >
+    </div>
+  </div>
+
+  <!-- Feedback Section -->
+  <div class="row mt-5">
+    <!-- Feedback Form -->
+    <div class="col-12 col-md-6">
+      <h3>Submit Feedback</h3>
+      <form action="/action/saveFeedback" method="post">
+        <div class="star-rating mb-3">
+          <input class="star" type="radio" id="star-1" name="rating" value="1"/>
+          <label id="i-star-1" for="star-1" class="fas fa-star"></label>
+          <input class="star" type="radio" id="star-2" name="rating" value="2"/> 
+          <label id="i-star-2" for="star-2" class="fas fa-star"></label>
+          <input class="star" type="radio" id="star-3" name="rating" value="3" />
+          <label id="i-star-3" for="star-3" class="fas fa-star"></label>
+          <input class="star" type="radio" id="star-4" name="rating" value="4"/>
+          <label id="i-star-4" for="star-4" class="fas fa-star"></label>
+          <input class="star" type="radio" id="star-5" name="rating" value="5"/>
+          <label id="i-star-5" for="star-5" class="fas fa-star"></label>
+        </div>
+        <div class="mb-3">
+          <%if(typeof user === 'undefined') { %>
+            <label for="userEmailAddress" class="form-label text-dark">Email address</label>
+            <input type="email" name="userEmailAddress" class="form-control" id="userEmailAddress" aria-describedby="emailHelp"/>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <% } else { %>
+            <input type="hidden" name="userId" value="<%= user._id%>"/>
+            <label for="userEmailAddress" class="form-label text-dark">Email address</label>
+            <input type="email" name="userEmailAddress" class="form-control" id="userEmailAddress" aria-describedby="emailHelp" value="<%= user.EmailAddress%>" readonly/>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <% } %>
+        </div>
+        <div class="mb-3">
+          <%if(typeof user === 'undefined') { %>
+            <label for="userName" class="form-label text-dark">Name</label>
+            <input type="text" class="form-control" id="userName" name="customerUserName"/>
+          <% } else { %>
+            <label for="userName" class="form-label text-dark">Name</label>
+            <input type="text" class="form-control" id="userName" name="customerUserName" value="<%=user.FirstName%> <%=user.LastName%>" readonly/>
+          <% } %>
+        </div>
+        <input type="hidden" name="eventId" value="<%= event._id %>"/>
+        <input type = "hidden" name="eventName" value="<%= event.EventName %>"/>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label text-dark">Feedback</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="customerFeedback"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <% if (typeof err !== 'undefined') { %>
+        <div class="col-md-8 m-5 text-center">
+          <span class="error mb-5"> <%= err %></span>
+          <br>
+        </div>
+      <% } %> 
+    </div>
+    <div class="col-md-6">
+      <h3>Feedback Received</h3>
+      <% if (event.Ratings && event.Ratings.length > 0) { %>
+        <ul class="list-group">
+          <% event.Ratings.forEach(feedback => { %>
+            <li class="list-group-item">
+              <p><strong>Rating:</strong> <%= feedback.Rating %> Stars</p>
+              <p><strong>Feedback:</strong> <%= feedback.Feedback %></p>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p class="text-muted">No feedback received yet. Be the first to leave feedback!</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+<script src="/custom/js/rating.js"></script>

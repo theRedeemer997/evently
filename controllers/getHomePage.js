@@ -42,7 +42,7 @@ const getHomePage = (req, res) => {
                 maxAge: 2 * 60 * 60 * 1000,
             });
         }
-        res.render('home', { loggedIn, lastVisitMessage });
+        res.render('home', { loggedIn, lastVisitMessage, typeOf });
     }
     // in case of organiser
     // console.log(req.session);

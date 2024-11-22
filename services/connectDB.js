@@ -1,17 +1,17 @@
 //import the mongoose package
 const mongoose = require('mongoose');
 //get the user collection
-const user = require('./model/user');
+const user = require('../model/user');
 //get the organizer collection
-const organizer = require('./model/organizer');
+const organizer = require('../model/organizer');
 //get the createdEvents collection
-const createdEvents = require('./model/createdevents');
+const createdEvents = require('../model/createdevents');
 //get the approvedEvents collection
-const approvedEvents = require('./model/approvedevents');
+const approvedEvents = require('../model/approvedevents');
 //ge the rejected events collection
-const rejectedEvents = require('./model/rejectedevents');
+const rejectedEvents = require('../model/rejectedevents');
 //ge the rating schema
-const rating = require('./model/ratings');
+const rating = require('../model/ratings');
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.mongoUri);

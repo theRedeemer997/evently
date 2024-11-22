@@ -36,5 +36,13 @@ const approvedEventsSchema = new Schema({
             },
         },
     ],
+    EventDateTime: {
+        type: Date,
+        required: true,
+    },
 });
+
+// Set the TTL index for the `EventDateTime` field (e.g., 0 means the document will be removed when the date and time passes)
+//approvedEventsSchema.index({ EventDateTime: 1 }, { expireAfterSeconds: 0 });
+
 module.exports = mongoose.model('approvedevents', approvedEventsSchema);

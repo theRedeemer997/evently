@@ -72,7 +72,7 @@ const handleUserFeedback = require('./controllers/handleUserFeedback');
 const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
 
 //connect the db
-const DB = require('./connectDB');
+const DB = require('./services/connectDB');
 DB();
 // Setting up multer as a middleware to grab photo uploads
 const multer = require('multer');

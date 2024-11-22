@@ -19,6 +19,7 @@ const handleEventsApproval = async (req, res) => {
             Address: event.Address,
             ImageUrl: event.ImageUrl,
             FileName: event.FileName,
+            EventDateTime: event.EventDateTime,
         });
         //save the event into approvedEvents collection
         await approvedEvents.save();

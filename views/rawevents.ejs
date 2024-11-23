@@ -1,9 +1,9 @@
 <%-include('partials/header',{tab:'Evently'})-%>
+<%-include('partials/navbar')-%>
     <section class="trending-events py-5">
         <div class="container">
             <h2 class="text-center mb-5">Manage Events</h2>
             <%-include('partials/loader')-%>
-
             <div class="row">
                 <% if (typeof createdEvents !=='undefined' ) { for (let event of createdEvents) { %>
                 <div class="col-sm-8 col-md-6 col-lg-4 mb-4">

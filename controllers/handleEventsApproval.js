@@ -3,6 +3,7 @@ const createdevents = require('../model/createdevents');
 const approvedevents = require('../model/approvedevents');
 const constants = require('../constants');
 const generateDynamicMessage = require('../services/generateDynamicMessage');
+const admin = require('../model/admin');
 const handleEventsApproval = async (req, res) => {
     try {
         const { eventId } = req.params;
@@ -19,9 +20,18 @@ const handleEventsApproval = async (req, res) => {
             Address: event.Address,
             ImageUrl: event.ImageUrl,
             FileName: event.FileName,
+            EventDateTime: event.EventDateTime,
+        });
+        const adm = new admin({
+            OrganizerName: event.OrganizerName,
+            EventName: event.EventName,
+            Address: event.Address,
+            EventDateTime: event.EventDateTime,
+            Action: 'Approved',
         });
         //save the event into approvedEvents collection
         await approvedEvents.save();
+        await adm.save();
         await sendMail(
             event.OrganizerEmail,
             generateDynamicMessage(

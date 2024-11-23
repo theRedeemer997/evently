@@ -10,8 +10,9 @@ const getManageEventPage = async (req, res) => {
         (name === constants.ADMIN && type === constants.ADMIN)
     ) {
         const createdEvents = await events.find();
+        let length = createdEvents.length;
         console.log('🚀 ~ getManageEventPage ~ events created:', createdEvents);
-        res.render('rawevents', { createdEvents });
+        res.render('rawevents', { createdEvents, length });
     } else {
         let salutation = 'Hi ' + '!!';
         let notification = constants.MANAGE_EVNT_ERR;

@@ -63,6 +63,14 @@
                                 
                             </div>
                             <div class="mb-3 col-md-8">
+                                <label for="eventdatetime" class="form-label">Event Date and Time</label>
+                                <% if (typeof eventdatetime !== 'undefined') { %>
+                                    <input type="datetime-local" class="form-control" name="eventdatetime" value="<%= eventdatetime %>">
+                                <% } else { %>
+                                    <input type="datetime-local" class="form-control" name="eventdatetime">
+                                <% } %>
+                            </div>
+                            <div class="mb-3 col-md-8">
                                 <label for="eventaddress" class="form-label">Event Address</label>
                                 <% if (typeof eventaddress !== 'undefined') { %>
                                     <input type="text" name="eventaddress" class="form-control" id="eventaddress" value="<%= eventaddress %>">
@@ -101,6 +109,18 @@
         </div>
     </section>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+        // Initialize Flatpickr on the input field with name="eventdatetime"
+        flatpickr("input[name='eventdatetime']", {
+           enableTime: true, // Enable time selection
+            dateFormat: "Y-m-d H:i", // Date and time format
+            minDate: "today", // Disable all dates before today
+            minuteIncrement: 1, // Increment time by 1 minute
+            defaultHour: new Date().getHours(), // Set current hour by default
+            defaultMinute: new Date().getMinutes(), // Set current minute by default
+        });
+</script>
 <script  src="/custom/js/main.js"></script>
 </body>
 </html>

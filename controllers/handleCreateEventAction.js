@@ -29,8 +29,11 @@ const handleCreateEventAction = async (req, res) => {
         description,
         eventaddress,
         eventname,
+        eventdatetime,
     } = req.body;
+
     try {
+        let eventDT = new Date(eventdatetime);
         if (req.file === undefined) {
             let err = 'Please upload the image';
             res.render('createvent', {
@@ -42,6 +45,7 @@ const handleCreateEventAction = async (req, res) => {
                 description,
                 eventaddress,
                 eventname,
+                eventdatetime,
             });
         } else {
             const { originalname, mimetype, buffer } = req.file;
@@ -75,6 +79,7 @@ const handleCreateEventAction = async (req, res) => {
                 Address: eventaddress,
                 ImageUrl: downloadURL,
                 FileName: originalname,
+                EventDateTime: eventdatetime,
             });
             await eventCreated.save();
 
@@ -112,6 +117,7 @@ const handleCreateEventAction = async (req, res) => {
                 description,
                 eventaddress,
                 eventname,
+                eventdatetime,
             });
         }
     }

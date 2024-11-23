@@ -1,14 +1,16 @@
   <%-include('partials/header',{tab:'Evently - Discover & Book Events'})-%>
   <body>
-    <% if (typeof salutation !== 'undefined' && salutation.length>0  && typeof  notification !==  'undefined' && notification.length > 0) { %>
-      <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
-    <% } %>
-    <%-include('partials/navbar')-%>
-    <%-include('partials/hero-header')-%>
-    <%-include('partials/trending')-%>
-    <%-include('partials/testimonials')-%>
-
-    <%-include('partials/footer')-%>
+    <div class="main-content">
+      <% if (typeof salutation !== 'undefined' && salutation.length>0  && typeof  notification !==  'undefined' && notification.length > 0) { %>
+        <%-include('partials/notification',{salutation:salutation, notification:notification}) %>
+      <% } %>
+      <%-include('partials/navbar')-%>
+      <%-include('partials/hero-header')-%>
+      <%-include('partials/trending')-%>
+      <%-include('partials/testimonials')-%>
+  
+      <%-include('partials/footer')-%>
+    </div>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/custom/js/animation.js"></script>
   </body>

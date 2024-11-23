@@ -43,6 +43,7 @@ const handleLogin = async (req, res) => {
                 const user = await users.findOne({
                     EmailAddress: email,
                 });
+                console.log('🚀 ~ handleLogin ~ user:', user);
                 const { eID, page } = req.cookies;
                 console.log('🚀 ~ handleLogin ~ page:', page);
                 console.log('🚀 ~ handleLogin ~ eID:', eID);

@@ -5,7 +5,7 @@ const getUserProfile = async (req, res) => {
     const { loggedIn, typeOf } = req.cookies;
     console.log('🚀 ~ getUserProfile ~ usr:', usr);
     console.log('🚀 ~ getUserProfile ~ bookedEvents:', usr.BookedEvents);
-    res.render('userProfile', { user: usr, loggedIn, typeOf });
+    res.render('userprofile', { user: usr, loggedIn, typeOf });
 };
 
 module.exports = getUserProfile;

@@ -1,0 +1,43 @@
+# Exported from Render on 2024-11-23T20:19:30Z
+services:
+    - type: web
+      name: evently
+      runtime: node
+      repo: https://github.com/theRedeemer997/evently
+      branch: feature/deployment-render
+      plan: free
+      envVars:
+          - key: MYPASS
+            sync: false
+          - key: MYMAIL
+            sync: false
+          - key: BASE_URL
+            sync: false
+          - key: PAYPAL_BASE_URL
+            sync: false
+          - key: PAYPAL_SECRET
+            sync: false
+          - key: PAYPAL_CLIENT_ID
+            sync: false
+          - key: APPID
+            sync: false
+          - key: MESSAGINGSENDERID
+            sync: false
+          - key: STORAGEBUCKET
+            sync: false
+          - key: PROJECTID
+            sync: false
+          - key: AUTHDOMAIN
+            sync: false
+          - key: APIKEY
+            sync: false
+          - key: SECRET
+            sync: false
+          - key: PORT
+            sync: false
+          - key: mongoUri
+            sync: false
+      region: oregon
+      buildCommand: npm install
+      startCommand: node index.js
+version: '1'

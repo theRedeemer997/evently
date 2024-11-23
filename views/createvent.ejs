@@ -13,20 +13,11 @@
                         <form>
                             <div class="mb-3 col-md-8">
                                 <label for="organizername" class="form-label">Organizer Name</label>
-                                <% if (typeof organizername !== 'undefined') { %>
-                                    <input type="text" class="form-control" name="organizername" value="<%= organizername %>">
-                                <% } else { %>
-                                    <input type="text" class="form-control" name="organizername">
-                                <% } %>
+                                    <input type="text" class="form-control" name="organizername" value="<%= orgname %>" readonly>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="organizeremail" class="form-label">Organizer Email</label>
-                                <% if (typeof organizeremail !== 'undefined') { %>
-                                    <input type="text" class="form-control" name="organizeremail" value="<%= organizeremail %>">
-                                <% } else { %>
-                                    <input type="text" class="form-control" name="organizeremail">
-                                <% } %>
-                                
+                                    <input type="text" class="form-control" name="organizeremail" value="<%= username %>" readonly>
                             </div>
                             <div class="mb-3 col-md-8">
                                 <label for="eventname" class="form-label">Event Name</label>

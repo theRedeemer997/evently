@@ -50,6 +50,11 @@
                 <a class="nav-link " href="/profile">Profile</a>
               </li>
             <%}%>
+            <% if (typeof typeOf !== 'undefined' && typeOf === 'organizer') { %> 
+              <li class="nav-item">
+                <a class="nav-link " href="/organizer/profile">Profile</a>
+              </li>
+            <%}%>
           <li class="nav-item">
             <a class="nav-link btn btn-signup" href="/logout">Logout</a>
           </li>

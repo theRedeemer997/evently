@@ -85,6 +85,7 @@ const handleLogin = async (req, res) => {
             console.log('🚀 ~ handleLogin ~ organizer exists:', user);
             if (user && isMatch) {
                 req.session.username = email;
+                req.session.orgname = user.OrganizerName;
                 req.session.password = password;
                 req.session.type = constants.SESSION_ORG;
                 res.cookie('username', email, cookieOptions);
@@ -93,6 +94,11 @@ const handleLogin = async (req, res) => {
                 res.cookie(
                     'uname',
                     user.FirstName + ' ' + user.LastName,
+                    cookieOptionsForLastVisit
+                );
+                res.cookie(
+                    'orgname',
+                    user.OrganizerName,
                     cookieOptionsForLastVisit
                 );
                 console.log('🚀 ~ handleLogin ~ session:', req.session);

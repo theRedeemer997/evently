@@ -30,6 +30,7 @@ const constants = {
         'loggedIn',
         'isAdmin',
         'typeOf',
+        'orgname',
         // 'lastVisit',
         // 'uname',
     ],

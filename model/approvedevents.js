@@ -40,6 +40,10 @@ const approvedEventsSchema = new Schema({
         type: Date,
         required: true,
     },
+    Duration: {
+        type: String,
+        required: true,
+    },
 });
 
 // Set the TTL index for the `EventDateTime` field (e.g., 0 means the document will be removed when the date and time passes)

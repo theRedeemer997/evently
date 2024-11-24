@@ -71,6 +71,7 @@ const getEventDetailsPage = require('./controllers/getEventDetailsPage');
 const handleUserFeedback = require('./controllers/handleUserFeedback');
 const handleSearchEvent = require('./controllers/getEventsBasedOnSearch');
 const getAdminProfile = require('./controllers/getAdminProfile');
+const getOrganizerProfile = require('./controllers/getOrganizerProfile');
 
 //connect the db
 const DB = require('./services/connectDB');
@@ -128,11 +129,15 @@ evently.post('/cancel/ticket', handleCancelEventAction);
 evently.post('/action/saveFeedback', handleUserFeedback);
 // call to get the user profile page
 evently.get('/profile', handleUserProfilePage);
-//call to fetch the events
+// call to fetch the events
 evently.get('/searchEvents', handleSearchEvent);
-//call the get the admin panel
+// call the get the admin panel
 evently.get('/admin/profile', getAdminProfile);
-//get call for logout
+// call to cancel the payment
+evently.get('/cancel-order', handleEventsPage);
+// call to handle the organizer profile
+evently.get('/organizer/profile', getOrganizerProfile);
+// get call for logout
 evently.get('/logout', handleLogout);
 
 evently.listen(port, () => {

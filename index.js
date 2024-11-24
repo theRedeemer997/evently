@@ -132,6 +132,8 @@ evently.get('/profile', handleUserProfilePage);
 evently.get('/searchEvents', handleSearchEvent);
 //call the get the admin panel
 evently.get('/admin/profile', getAdminProfile);
+//call to cancel the payment
+evently.get('/cancel-order', handleEventsPage);
 //get call for logout
 evently.get('/logout', handleLogout);
 

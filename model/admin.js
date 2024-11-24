@@ -28,6 +28,7 @@ const adminSchema = new Schema({
     },
     Action: {
         type: String,
+        default: 'Pending',
     },
 });
 

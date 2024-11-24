@@ -21,8 +21,8 @@ const getHomePage = async (req, res) => {
         username !== undefined &&
         loggedIn !== undefined
     ) {
-        const evts = await createdEvents.find();
-        let length = evts.length;
+        const evt = await createdEvents.find();
+        let length = evt.length;
         res.render('home', { isAdmin, loggedIn, length, evts });
     }
     //in case of user details found in the cookie then,

@@ -12,6 +12,7 @@ const config = require('../config/firebaseConfig');
 const createdEvent = require('../model/createdevents');
 const constants = require('../constants');
 const handleDeleteImage = require('../services/handleDeleteImage');
+const ratings = require('../model/ratings');
 
 //Initialize a firebase application
 const app = initializeApp(config);
@@ -30,9 +31,11 @@ const handleCreateEventAction = async (req, res) => {
         eventaddress,
         eventname,
         eventdatetime,
+        duration,
     } = req.body;
 
     try {
+        const evts = await ratings.find({ Rating: 5 });
         let eventDT = new Date(eventdatetime);
         if (req.file === undefined) {
             let err = 'Please upload the image';
@@ -46,6 +49,7 @@ const handleCreateEventAction = async (req, res) => {
                 eventaddress,
                 eventname,
                 eventdatetime,
+                duration,
             });
         } else {
             const { originalname, mimetype, buffer } = req.file;
@@ -76,6 +80,7 @@ const handleCreateEventAction = async (req, res) => {
                 SlotsAvailable: slotsavailable,
                 Price: price,
                 Description: description,
+                Duration: duration,
                 Address: eventaddress,
                 ImageUrl: downloadURL,
                 FileName: originalname,
@@ -89,6 +94,7 @@ const handleCreateEventAction = async (req, res) => {
                 salutation,
                 notification,
                 loggedIn: constants.LOGGED_IN,
+                evts,
             });
         }
     } catch (error) {
@@ -118,6 +124,7 @@ const handleCreateEventAction = async (req, res) => {
                 eventaddress,
                 eventname,
                 eventdatetime,
+                duration,
             });
         }
     }

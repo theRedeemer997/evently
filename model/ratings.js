@@ -14,6 +14,12 @@ const ratingsSchema = new Schema({
         ref: 'approvedevents', // Reference to the approvedevents schema
         required: true,
     },
+    EventDescription: {
+        type: String,
+    },
+    EventName: {
+        type: String,
+    },
     Rating: {
         type: Number,
         required: true,
@@ -23,6 +29,9 @@ const ratingsSchema = new Schema({
     Feedback: {
         type: String,
         maxlength: 500,
+    },
+    ImageUrl: {
+        type: String,
     },
     Date: {
         type: Date,

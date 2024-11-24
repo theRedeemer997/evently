@@ -96,6 +96,11 @@ const handleLogin = async (req, res) => {
                     user.FirstName + ' ' + user.LastName,
                     cookieOptionsForLastVisit
                 );
+                res.cookie(
+                    'orgname',
+                    user.OrganizerName,
+                    cookieOptionsForLastVisit
+                );
                 console.log('🚀 ~ handleLogin ~ session:', req.session);
                 //res.render('home', { loggedIn: constants.LOGGED_IN });
                 req.flash('loggedIn', constants.LOGGED_IN);

@@ -7,7 +7,7 @@ const organizerSchema = new Schema({
     EmailAddress: {
         type: String,
         required: [true, 'EmailAddress is required'],
-        unique: true,
+        unique: false,
         trim: true,
         match: [/.+\@.+\..+/, 'Please fill a valid email address'],
         maxlength: 60,

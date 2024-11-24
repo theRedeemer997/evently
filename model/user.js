@@ -42,6 +42,9 @@ const userSchema = new Schema({
             FinalPrice: {
                 type: String,
             },
+            EventDate: {
+                type: String,
+            },
         },
     ],
     SubmittedRatings: [

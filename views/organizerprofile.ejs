@@ -1,30 +1,59 @@
 <%-include('partials/header',{tab:'Evently - Discover & Book Events'})-%>
-<%-include('partials/navbar')-%>
-<div class="main-content">
-
-  <div class="container mt-5">
-    <a href="/" class="btn btn-secondary mb-3" >BACK</a>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Event Name</th>
-          <th>Address</th>
-          <th>Event Date/Time</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Loop through the admins array and display each event -->
-        <% admins.forEach(admin => { %>
-          <tr>
-            <td><%= admin.EventName %></td>
-            <td><%= admin.Address %></td>
-            <td><%= new Date(admin.EventDateTime).toLocaleString() %></td>
-            <td><%= admin.Action %></td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-</div>
- <%-include('partials/footer')-%>
+  <%-include('partials/navbar')-%>
+    <div class="main-content">
+      <div class="container p-3">
+        <div class="row g-5">
+          <div class="col-md-3">
+            <a href="/" class="btn btn-secondary mb-3">BACK</a>
+            <h2 class="mb-4">Organizer Details</h2>
+            <div class="card">
+              <div class="card-body">
+                <p><strong>Email Address:</strong>
+                  <%= user.EmailAddress %>
+                </p>
+                <p><strong>First Name:</strong>
+                  <%= user.FirstName || typeof user.FirstName %>
+                </p>
+                <p><strong>Last Name:</strong>
+                  <%= user.LastName %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h2>Event History</h2>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Event Name</th>
+                  <th>Address</th>
+                  <th>Event Date/Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Loop through the admins array and display each event -->
+                <% admins.forEach(admin=> { %>
+                  <tr>
+                    <td>
+                      <%= admin.EventName %>
+                    </td>
+                    <td>
+                      <%= admin.Address %>
+                    </td>
+                    <td>
+                      <%= new Date(admin.EventDateTime).toLocaleString() %>
+                    </td>
+                    <td>
+                      <%= admin.Action || 'Pending' %>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <%-include('partials/footer')-%>

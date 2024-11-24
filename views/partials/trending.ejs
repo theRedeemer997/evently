@@ -1,65 +1,29 @@
 <section class="trending-events py-5">
-  <div class="container">
-    <h2 class="text-center mb-5">Trending Events</h2>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card event-card shadow-sm h-100">
-          <img
-            src="/images/event1.jpg"
-            class="card-img-top event-img"
-            alt="Event 1"
-          />
-          <div class="card-body">
-            <h5 class="card-title">The Underground</h5>
-            <p class="card-text">
-              Discover the latest underground music scene with local talents
-              performing live in the heart of the city. An experience like no
-              other!
-            </p>
-            <a href="#" class="btn btn-outline-dark-purple btn-book"
-              >Book Now</a
-            >
-          </div>
+    <div class="container">
+        <h2 class="text-center mb-5">Trending Events</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+               <% if (evts && evts.length > 0) { %>
+                <% evts.forEach(e => { %>
+                  <div class="card event-card shadow-sm h-100">
+                      <img
+                          src="<%=e.ImageUrl%>"
+                          class="card-img-top event-img"
+                          alt="Event 1"
+                      />
+                      <div class="card-body">
+                          <h5 class="card-title"><%=e.EventName%></h5>
+                          <p class="card-text">
+                             <%=e.EventDescription%>
+                          </p>
+                          <a href="/bookEvent/<%=e.EventId%>" class="btn btn-outline-dark-purple btn-book"
+                              >Book Now</a
+                          >
+                      </div>
+                  </div>
+                 <% }) %>
+              <% } %>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card event-card shadow-sm h-100">
-          <img
-            src="/images/event2.png"
-            class="card-img-top event-img"
-            alt="Event 2"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Oktoberfest</h5>
-            <p class="card-text">
-              Join us for an authentic Oktoberfest celebration with traditional
-              beer, food, and live music.
-            </p>
-            <a href="#" class="btn btn-outline-dark-purple btn-book"
-              >Book Now</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card event-card shadow-sm h-100">
-          <img
-            src="/images/event3.png"
-            class="card-img-top event-img"
-            alt="Event 3"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Halloween Costume Party</h5>
-            <p class="card-text">
-              Get ready for a night of spooks and fun with our Halloween Costume
-              Party. Prizes for best costumes!
-            </p>
-            <a href="#" class="btn btn-outline-dark-purple btn-book"
-              >Book Now</a
-            >
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>

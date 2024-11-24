@@ -42,7 +42,7 @@ const approvedEventsSchema = new Schema({
     },
     Duration: {
         type: String,
-        required: true,
+        required: false,
     },
 });
 

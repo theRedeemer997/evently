@@ -29,17 +29,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% user.BookedEvents.forEach(event => { %>
+                        <% user.BookedEvents.forEach(event => { 
+                            let eventDate = new Date(event.EventDate);
+                            let currentDate = new Date();
+                            let isExpired = eventDate < currentDate;
+                            %>
                             <tr>
                                 <td><%= event.EventName %></td>
                                 <td><%= event.Tickets %></td>
                                 <td><%= event.FinalPrice %></td>
                                 <td>
+                                    <% if (!isExpired) { %>
                                     <form action="/cancel/ticket" method="POST">
                                         <input type="hidden" name="tickets" value="<%= event.Tickets %>">
                                         <input type="hidden" name="eventId" value="<%= event.EventId %>">
                                         <button type="submit" class="btn btn-danger">Cancel</button>
                                     </form>
+                                     <% } else { %>
+                                        <span class="text-muted">Event expired</span>
+                                    <% } %>
                                 </td>
                             </tr>
                         <% }) %>

@@ -51,6 +51,12 @@
                                 Price: $<%= event.Price %>
                             </p>
                             <p class="card-text">
+                                Duration: <%= event.Duration %> hours
+                            </p>
+                            <p class="card-text">
+                                Date/Time: <%= new Date(event.EventDateTime).toLocaleString('en-US', { timeZone: 'America/New_York', hour12: true }) %>
+                            </p>
+                            <p class="card-text">
                                 Location: <%= event.Address %>
                             </p>
                             <a href="/bookEvent/<%= event._id %>" class="btn btn-outline-dark-purple btn-book" onclick="showBootstrapLoader()">Book</a>

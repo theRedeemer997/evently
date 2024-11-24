@@ -21,6 +21,7 @@ const handleEventsApproval = async (req, res) => {
             ImageUrl: event.ImageUrl,
             FileName: event.FileName,
             EventDateTime: event.EventDateTime,
+            Duration: event.Duration,
         });
         const adm = new admin({
             OrganizerName: event.OrganizerName,

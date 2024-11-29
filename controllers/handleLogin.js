@@ -49,28 +49,51 @@ const handleLogin = async (req, res) => {
                 console.log('🚀 ~ handleLogin ~ eID:', eID);
                 const evt = await approvedEvents.findById(eID);
                 //compare if the passwords are same
-                const isMatch = await bcrypt.compare(password, user.Password);
-                if (user && isMatch) {
-                    req.session.username = user.EmailAddress;
-                    req.session.password = user.Password;
-                    req.session.name = user.FirstName + ' ' + user.LastName;
-                    req.session.type = constants.SESSION_USR;
-                    res.cookie('username', user.EmailAddress, cookieOptions);
-                    res.cookie('loggedIn', constants.LOGGED_IN, cookieOptions);
-                    res.cookie('typeOf', constants.SESSION_USR, cookieOptions);
-                    res.cookie(
-                        'uname',
-                        user.FirstName + ' ' + user.LastName,
-                        cookieOptionsForLastVisit
+                if (user) {
+                    const isMatch = await bcrypt.compare(
+                        password,
+                        user.Password
                     );
-                    req.flash('loggedIn', constants.LOGGED_IN);
-                    //req.flash('lastVisitMessage', lastVisitMessage);
-                    console.log('🚀 ~ handleLogin ~ req.session:', req.session);
-                    //res.render('home', { loggedIn: constants.LOGGED_IN });
-                    if (eID && page) {
-                        //res.render('bookevent', { event: evt });
-                        res.redirect(`/bookevent/${eID}`);
-                    } else res.redirect('/');
+                    if (isMatch) {
+                        req.session.username = user.EmailAddress;
+                        req.session.password = user.Password;
+                        req.session.name = user.FirstName + ' ' + user.LastName;
+                        req.session.type = constants.SESSION_USR;
+                        res.cookie(
+                            'username',
+                            user.EmailAddress,
+                            cookieOptions
+                        );
+                        res.cookie(
+                            'loggedIn',
+                            constants.LOGGED_IN,
+                            cookieOptions
+                        );
+                        res.cookie(
+                            'typeOf',
+                            constants.SESSION_USR,
+                            cookieOptions
+                        );
+                        res.cookie(
+                            'uname',
+                            user.FirstName + ' ' + user.LastName,
+                            cookieOptionsForLastVisit
+                        );
+                        req.flash('loggedIn', constants.LOGGED_IN);
+                        //req.flash('lastVisitMessage', lastVisitMessage);
+                        console.log(
+                            '🚀 ~ handleLogin ~ req.session:',
+                            req.session
+                        );
+                        //res.render('home', { loggedIn: constants.LOGGED_IN });
+                        if (eID && page) {
+                            //res.render('bookevent', { event: evt });
+                            res.redirect(`/bookevent/${eID}`);
+                        } else res.redirect('/');
+                    } else {
+                        err = constants.LOGIN_ERR;
+                        res.render('login', { err });
+                    }
                 } else {
                     err = constants.LOGIN_ERR;
                     res.render('login', { err });

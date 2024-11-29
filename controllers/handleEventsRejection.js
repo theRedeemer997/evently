@@ -4,6 +4,7 @@ const rejectedEvent = require('../model/rejectedevents');
 const handleDeleteImage = require('../services/handleDeleteImage');
 const constants = require('../constants');
 const admin = require('../model/admin');
+const generateDynamicMessage = require('../services/generateDynamicMessage');
 const handleEventsRejection = async (req, res) => {
     try {
         const { eventId } = req.params;

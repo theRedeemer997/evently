@@ -2,28 +2,28 @@
     <div class="container">
         <h2 class="text-center mb-5">Trending Events</h2>
         <div class="row">
-            <div class="col-md-4 mb-4">
-               <% if (evts && evts.length > 0) { %>
+            <% if (evts && evts.length > 0) { %>
                 <% evts.forEach(e => { %>
-                  <div class="card event-card shadow-sm h-100">
-                      <img
-                          src="<%=e.ImageUrl%>"
-                          class="card-img-top event-img"
-                          alt="Event 1"
-                      />
-                      <div class="card-body">
-                          <h5 class="card-title"><%=e.EventName%></h5>
-                          <p class="card-text">
-                             <%=e.EventDescription%>
-                          </p>
-                          <a href="/bookEvent/<%=e.EventId%>" class="btn btn-outline-dark-purple btn-book"
-                              >Book Now</a
-                          >
+                <div class="col-md-4 mb-4">
+                      <div class="card event-card shadow-sm h-100">
+                          <img
+                              src="<%=e.ImageUrl%>"
+                              class="card-img-top event-img"
+                              alt="Event 1"
+                          />
+                          <div class="card-body">
+                              <h5 class="card-title"><%=e.EventName%></h5>
+                              <p class="card-text">
+                                 <%=e.EventDescription%>
+                              </p>
+                              <a href="/bookEvent/<%=e.EventId%>" class="btn btn-outline-dark-purple btn-book"
+                                  >Book Now</a
+                              >
+                          </div>
                       </div>
-                  </div>
-                 <% }) %>
-              <% } %>
-            </div>
+                </div>
+                <% }) %>
+            <% } %>
         </div>
     </div>
 </section>
